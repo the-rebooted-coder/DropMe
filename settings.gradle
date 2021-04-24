@@ -1,2 +1,3 @@
 include ':app'
+include ':app', ':removebg'
 rootProject.name = "DropMe"
