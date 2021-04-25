@@ -19,7 +19,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DropMe">
-        <activity android:name=".Magic"></activity>
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.onesilicondiode.dropme.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_list">
+
+            </meta-data>
+        </provider>
+        <activity android:name=".Magic" />
         <activity
             android:name=".LaunchScreen"
             android:theme="@style/SplashTheme">

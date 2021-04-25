@@ -14,6 +14,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
+import com.theapache64.removebg.RemoveBg;
+
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -29,7 +31,7 @@ public class Magic extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_magic);
 
-        image = findViewById(R.id.picture);
+        image = findViewById(R.id.imageView);
         Button captureButton = findViewById(R.id.capture);
         captureButton.setOnClickListener(capture);
         if (!getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA)) {
@@ -48,7 +50,6 @@ public class Magic extends AppCompatActivity {
         cameraIntent.putExtra(MediaStore.EXTRA_FINISH_ON_COMPLETION, true);
         if (cameraIntent.resolveActivity(getPackageManager()) != null) {
             startActivityForResult(cameraIntent, REQUEST_PICTURE_CAPTURE);
-
             File pictureFile = null;
             try {
                 pictureFile = getPictureFile();
@@ -83,6 +84,8 @@ public class Magic extends AppCompatActivity {
             File imgFile = new File(pictureFilePath);
             if (imgFile.exists()) {
                 image.setImageURI(Uri.fromFile(imgFile));
+                File f = new File(pictureFilePath);
+                Uri picUri = Uri.fromFile(f);
             }
         }
     }
