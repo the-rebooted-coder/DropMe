@@ -10,7 +10,7 @@ public class LaunchScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        startActivity(new Intent(LaunchScreen.this, Landing.class));
+        startActivity(new Intent(LaunchScreen.this, Magic.class));
         finish();
     }
 }
