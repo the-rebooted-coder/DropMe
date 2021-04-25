@@ -14,8 +14,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
-import com.theapache64.removebg.RemoveBg;
-
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
