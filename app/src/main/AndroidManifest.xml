@@ -6,7 +6,8 @@
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
@@ -19,6 +20,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DropMe">
+        <activity android:name=".Magic"></activity>
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.onesilicondiode.dropme.fileprovider"
@@ -26,11 +29,9 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_list">
-
-            </meta-data>
+                android:resource="@xml/file_list"></meta-data>
         </provider>
-        <activity android:name=".Magic" />
+
         <activity
             android:name=".LaunchScreen"
             android:theme="@style/SplashTheme">
