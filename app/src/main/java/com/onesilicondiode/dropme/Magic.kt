@@ -64,8 +64,6 @@ class Magic : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_magic)
         ButterKnife.bind(this)
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
-        setSupportActionBar(toolbar)
     }
     @OnClick(R.id.b_choose_image, R.id.i_choose_image)
     fun onChooseImageClicked() {
