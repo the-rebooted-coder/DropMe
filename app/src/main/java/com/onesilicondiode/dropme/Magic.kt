@@ -1,20 +1,19 @@
 package com.onesilicondiode.dropme
 
 import android.Manifest
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
-import android.os.Bundle
-import android.os.Environment
+import android.os.*
 import android.view.View
+import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
-import com.esafirm.imagepicker.features.ImagePicker
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.core.content.FileProvider
 import butterknife.BindView
 import butterknife.ButterKnife
@@ -22,6 +21,7 @@ import butterknife.OnClick
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
+import com.esafirm.imagepicker.features.ImagePicker
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.listener.PermissionDeniedResponse
 import com.karumi.dexter.listener.PermissionGrantedResponse
@@ -63,24 +63,18 @@ class Magic : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_magic)
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         ButterKnife.bind(this)
     }
     @OnClick(R.id.b_choose_image, R.id.i_choose_image)
     fun onChooseImageClicked() {
-
+        vibrateDevice()
         info("Choose inputImage clicked")
 
         ImagePicker.create(this)
                 .single()
                 .start()
-    }
-
-    private fun appendInputDetails(details: String) {
-        tvInputDetails.text = "${tvInputDetails.text}\n$details"
-    }
-
-    private fun clearInputDetails() {
-        tvInputDetails.text = ""
     }
 
     @OnClick(R.id.iv_input)
@@ -113,7 +107,7 @@ class Magic : AppCompatActivity() {
     @OnClick(R.id.b_process)
     fun onProcessClicked() {
         if (inputImage != null) {
-
+            vibrateDevice()
             info("Image is ${inputImage!!.path}")
             // Check permission
             checkPermission {
@@ -267,6 +261,8 @@ class Magic : AppCompatActivity() {
                         .into(ivInput)
 
                 // Showing process button
+                // Showing process button
+                bProcess.visibility = View.VISIBLE
                 ivOutput.visibility = View.INVISIBLE
 
             } else {
@@ -274,6 +270,15 @@ class Magic : AppCompatActivity() {
             }
 
             super.onActivityResult(requestCode, resultCode, data)
+        }
+    }
+    private fun vibrateDevice() {
+        val v3: Vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            v3.vibrate(VibrationEffect.createOneShot(28, VibrationEffect.DEFAULT_AMPLITUDE))
+        } else {
+            //deprecated in API 26
+            v3.vibrate(25)
         }
     }
 }

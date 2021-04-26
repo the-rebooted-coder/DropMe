@@ -8,9 +8,9 @@
 
     <ImageView
         android:id="@+id/iv_photo"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/ic_picture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_choose_image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -21,6 +21,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="Tap to Choose"
+        android:fontFamily="@font/productsansbold"
+        android:textColor="@color/white"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="@id/iv_photo"
         app:layout_constraintStart_toStartOf="@id/iv_photo"
         app:layout_constraintTop_toBottomOf="@id/iv_photo" />

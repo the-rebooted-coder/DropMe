@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/choose_me"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".Magic"
     tools:showIn="@layout/activity_magic">
@@ -17,7 +18,8 @@
             android:id="@+id/b_choose_image"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Choose Image"
+            android:text="@string/choose_image"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -26,7 +28,7 @@
         <include
             android:id="@+id/i_choose_image"
             layout="@layout/choose_image_inc"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toTopOf="@id/b_process"
             app:layout_constraintEnd_toEndOf="@id/b_choose_image"
@@ -47,6 +49,7 @@
         <TextView
             android:id="@+id/tv_input_details"
             android:layout_width="0dp"
+            android:visibility="invisible"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="@id/iv_input"
             app:layout_constraintStart_toStartOf="@id/iv_input"
@@ -58,6 +61,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="Process"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="@id/tv_input_details"
             app:layout_constraintStart_toStartOf="@id/tv_input_details"
             app:layout_constraintTop_toBottomOf="@id/tv_input_details" />
@@ -67,6 +71,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:visibility="invisible"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="@id/b_process"
             app:layout_constraintStart_toStartOf="@id/b_process"
@@ -87,6 +92,7 @@
             android:id="@+id/iv_output"
             android:layout_width="0dp"
             android:layout_height="300dp"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="@id/pb_progress"
             app:layout_constraintStart_toStartOf="@id/pb_progress"
             app:layout_constraintTop_toBottomOf="@id/pb_progress"
