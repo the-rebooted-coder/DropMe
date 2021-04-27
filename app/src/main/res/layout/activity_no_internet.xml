@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/black"
+    tools:context=".NoInternet">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/productsansbold"
+        android:text="@string/biggest_question"
+        android:textColor="@color/white"
+        android:textAlignment="center"
+        android:layout_marginTop="110dp"
+        android:layout_centerHorizontal="true"
+        android:textSize="24sp"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/retryConnection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/no_connection"
+        android:fontFamily="@font/productsansbold"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:text="@string/retry"/>
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/no_connection"
+        android:layout_width="320dp"
+        android:layout_height="320dp"
+        android:layout_centerInParent="true"
+        app:lottie_fileName="no_internet.json"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        />
+
+</RelativeLayout>
