@@ -31,6 +31,7 @@ import com.karumi.dexter.listener.single.DialogOnDeniedPermissionListener
 import com.theapache64.removebg.RemoveBg
 import com.theapache64.removebg.utils.ErrorResponse
 import com.theapache64.twinkill.logger.info
+import kotlinx.android.synthetic.main.content_main.*
 import java.io.File
 
 class Magic : AppCompatActivity() {
@@ -78,22 +79,15 @@ class Magic : AppCompatActivity() {
     }
 
     @OnClick(R.id.iv_input)
-    fun onInputClicked() {
-        if (inputImage != null) {
-            viewImage(inputImage!!)
-        } else {
-            toast("No Image Selected")
-        }
-    }
-
-    @OnClick(R.id.iv_output)
     fun onOutputClicked() {
         if (outputImage != null) {
             viewImage(outputImage!!)
         } else {
-            toast("Output Not Saved")
+            toast("Process Image First!")
         }
     }
+   // @OnClick(R.id.iv_output)
+
     private fun viewImage(inputImage: File) {
 
         val uri = FileProvider.getUriForFile(this, "${BuildConfig.APPLICATION_ID}.provider", inputImage)
@@ -156,10 +150,11 @@ class Magic : AppCompatActivity() {
                             override fun onSuccess(bitmap: Bitmap) {
                                 info("background removed from bg , and output is $bitmap")
                                 runOnUiThread {
-                                    ivOutput.setImageBitmap(bitmap)
-                                    ivOutput.visibility = View.VISIBLE
+                                    ivInput.setImageBitmap(bitmap)
+                                    i_choose_image.visibility = View.GONE
+                                    // ivOutput.visibility = View.VISIBLE
                                     // Save output image
-                                    saveImage("${inputImage!!.name}-no-bg", bitmap) {
+                                    saveImage("${inputImage!!.name}-DropMe", bitmap) {
                                         outputImage = it
                                     }
                                 }

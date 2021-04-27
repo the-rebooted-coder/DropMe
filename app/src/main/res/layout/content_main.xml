@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/choose_me"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".Magic"
     tools:showIn="@layout/activity_magic">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        tools:context=".Magic"
+        tools:showIn="@layout/activity_magic"
+        android:background="@drawable/choose_me"
         android:layout_margin="8dp">
 
         <Button
@@ -71,7 +73,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:visibility="invisible"
+            android:visibility="gone"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="@id/b_process"
             app:layout_constraintStart_toStartOf="@id/b_process"
@@ -83,7 +85,7 @@
             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:visibility="invisible"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="@id/tv_progress"
             app:layout_constraintStart_toStartOf="@id/tv_progress"
             app:layout_constraintTop_toBottomOf="@id/tv_progress" />
@@ -101,4 +103,4 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</ScrollView>
+</RelativeLayout>
