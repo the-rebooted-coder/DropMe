@@ -1,7 +1,6 @@
 package com.onesilicondiode.dropme
 
 import android.app.Application
-import android.os.Bundle
 import com.theapache64.removebg.RemoveBg
 
 class App : Application() {

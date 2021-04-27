@@ -22,8 +22,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DropMe">
-        <activity android:name=".NoInternet"></activity>
-        <activity android:name=".Magic" />
+        <activity android:name=".NoInternet"/>
+        <activity android:name=".Magic"/>
 
         <provider
             android:name="androidx.core.content.FileProvider"
