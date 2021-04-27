@@ -60,4 +60,7 @@ dependencies {
 
     // ImagePicker
     implementation 'com.github.esafirm.android-image-picker:imagepicker:2.0.0'
+
+    //Lottie
+    implementation 'com.airbnb.android:lottie:3.6.1'
 }

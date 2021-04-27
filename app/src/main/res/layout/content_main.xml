@@ -9,11 +9,11 @@
     tools:showIn="@layout/activity_magic">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:context=".Magic"
         tools:showIn="@layout/activity_magic"
-        android:background="@drawable/choose_me"
         android:layout_margin="8dp">
 
         <Button
@@ -43,10 +43,25 @@
             android:layout_width="0dp"
             android:layout_height="300dp"
             android:visibility="invisible"
-            app:layout_constraintEnd_toEndOf="@id/b_choose_image"
-            app:layout_constraintStart_toStartOf="@id/b_choose_image"
-            app:layout_constraintTop_toBottomOf="@id/b_choose_image"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             tools:ignore="ContentDescription" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/waitingLottie"
+            android:layout_width="310dp"
+            android:layout_height="310dp"
+            app:lottie_fileName="loading.json"
+            app:lottie_autoPlay="false"
+            app:lottie_loop="true"
+            android:visibility="invisible"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
 
         <TextView
             android:id="@+id/tv_input_details"
@@ -59,11 +74,14 @@
 
         <Button
             android:id="@+id/b_process"
-            android:layout_width="0dp"
+            android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:fontFamily="@font/productsansbold"
             android:text="Process"
             android:visibility="invisible"
+            android:textColor="@color/white"
+            android:background="@drawable/button"
             app:layout_constraintEnd_toEndOf="@id/tv_input_details"
             app:layout_constraintStart_toStartOf="@id/tv_input_details"
             app:layout_constraintTop_toBottomOf="@id/tv_input_details" />
@@ -90,6 +108,21 @@
             app:layout_constraintStart_toStartOf="@id/tv_progress"
             app:layout_constraintTop_toBottomOf="@id/tv_progress" />
 
+        <TextView
+            android:id="@+id/magic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="@id/tv_progress"
+            app:layout_constraintStart_toStartOf="@id/tv_progress"
+            app:layout_constraintTop_toBottomOf="@id/tv_progress"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:fontFamily="@font/productsansbold"
+            android:textSize="19sp"
+            android:layout_marginTop="10dp"/>
+
+
         <ImageView
             android:id="@+id/iv_output"
             android:layout_width="0dp"
@@ -100,7 +133,5 @@
             app:layout_constraintTop_toBottomOf="@id/pb_progress"
             tools:ignore="ContentDescription"
             tools:src="@tools:sample/backgrounds/scenic" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </RelativeLayout>

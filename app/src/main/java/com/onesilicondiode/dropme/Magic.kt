@@ -31,6 +31,7 @@ import com.karumi.dexter.listener.single.DialogOnDeniedPermissionListener
 import com.theapache64.removebg.RemoveBg
 import com.theapache64.removebg.utils.ErrorResponse
 import com.theapache64.twinkill.logger.info
+import kotlinx.android.synthetic.main.choose_image_inc.*
 import kotlinx.android.synthetic.main.content_main.*
 import java.io.File
 
@@ -86,7 +87,7 @@ class Magic : AppCompatActivity() {
             toast("Process Image First!")
         }
     }
-   // @OnClick(R.id.iv_output)
+    // @OnClick(R.id.iv_output)
 
     private fun viewImage(inputImage: File) {
 
@@ -112,7 +113,12 @@ class Magic : AppCompatActivity() {
                 compressImage(inputImage!!) { bitmap ->
 
                     info("Image compressed")
-
+                    magic.visibility = View.VISIBLE
+                    bProcess.visibility = View.GONE
+                    i_choose_image.visibility = View.GONE
+                    ivInput.visibility = View.INVISIBLE
+                    waitingLottie.visibility = View.VISIBLE
+                    waitingLottie.playAnimation()
                     saveImage("${System.currentTimeMillis()}", bitmap) { compressedImage ->
 
                         info("Compressed inputImage saved to ${compressedImage.absolutePath}, and removing bg...")
@@ -126,33 +132,40 @@ class Magic : AppCompatActivity() {
 
                             override fun onProcessing() {
                                 runOnUiThread {
-                                    tvProgress.setText("Processing")
+                                    magic.setText(getString(R.string.magic_is_happening))
                                 }
                             }
 
                             override fun onUploadProgress(progress: Float) {
                                 runOnUiThread {
-                                    tvProgress.text = "Uploading ${progress.toInt()}%"
-                                    pbProgress.progress = progress.toInt()
+                                    magic.setText(getString(R.string.magic_about_to_happen))
                                 }
                             }
 
                             override fun onError(errors: List<ErrorResponse.Error>) {
                                 runOnUiThread {
+                                    magic.visibility = View.INVISIBLE
+                                    i_choose_image.visibility = View.VISIBLE
+                                    ivInput.visibility = View.VISIBLE
+                                    waitingLottie.visibility = View.GONE
+                                    waitingLottie.cancelAnimation()
                                     val errorBuilder = StringBuilder()
                                     errors.forEach {
                                         errorBuilder.append("${it.title} : ${it.detail} : ${it.code}\n")
                                     }
-
                                     showErrorAlert(errorBuilder.toString())
                                 }
                             }
                             override fun onSuccess(bitmap: Bitmap) {
                                 info("background removed from bg , and output is $bitmap")
                                 runOnUiThread {
+                                    magic.visibility = View.INVISIBLE
+                                    ivInput.visibility = View.VISIBLE
+                                    waitingLottie.visibility = View.GONE
+                                    waitingLottie.cancelAnimation()
                                     ivInput.setImageBitmap(bitmap)
                                     i_choose_image.visibility = View.GONE
-                                    // ivOutput.visibility = View.VISIBLE
+                                    bProcess.visibility = View.GONE
                                     // Save output image
                                     saveImage("${inputImage!!.name}-DropMe", bitmap) {
                                         outputImage = it
@@ -256,7 +269,7 @@ class Magic : AppCompatActivity() {
                         .into(ivInput)
 
                 // Showing process button
-                // Showing process button
+                tapToChoose.visibility = View.GONE
                 bProcess.visibility = View.VISIBLE
                 ivOutput.visibility = View.INVISIBLE
 

@@ -3,4 +3,6 @@
     <string name="click">Click</string>
     <string name="process">Process</string>
     <string name="choose_image">Choose Image</string>
+    <string name="magic_is_happening">Magic is Happening in the Cloud...☁️</string>
+    <string name="magic_about_to_happen">Throwing image above the clouds...☁️</string>
 </resources>
