@@ -108,17 +108,18 @@ class Magic : AppCompatActivity() {
             checkPermission {
 
                 info("Permission granted")
-
+                bProcess.visibility = View.GONE
+                bProcess.animate().alpha(0.0f)
+                magic.visibility = View.VISIBLE
+                magic.animate().alpha(1.0f)
+                i_choose_image.visibility = View.GONE
+                ivInput.visibility = View.INVISIBLE
+                waitingLottie.visibility = View.VISIBLE
+                waitingLottie.playAnimation()
                 // permission granted, compress the inputImage now
                 compressImage(inputImage!!) { bitmap ->
 
                     info("Image compressed")
-                    magic.visibility = View.VISIBLE
-                    bProcess.visibility = View.GONE
-                    i_choose_image.visibility = View.GONE
-                    ivInput.visibility = View.INVISIBLE
-                    waitingLottie.visibility = View.VISIBLE
-                    waitingLottie.playAnimation()
                     saveImage("${System.currentTimeMillis()}", bitmap) { compressedImage ->
 
                         info("Compressed inputImage saved to ${compressedImage.absolutePath}, and removing bg...")
