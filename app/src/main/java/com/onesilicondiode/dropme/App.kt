@@ -11,6 +11,6 @@ class App : Application() {
         /**
          * GET YOUR API KEY FROM HERE -> https://www.remove.bg/profile#api-key
          */
-        RemoveBg.init("BLFZG64Vbj1E7DugVz2ERCAr")
+        RemoveBg.init("muwoXsbd5N35jmxitxvPymQU")
     }
 }
