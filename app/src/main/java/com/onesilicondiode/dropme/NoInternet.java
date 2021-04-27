@@ -3,7 +3,12 @@ package com.onesilicondiode.dropme;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -20,11 +25,15 @@ public class NoInternet extends AppCompatActivity {
         retry = findViewById(R.id.retryConnection);
         retry.setOnClickListener(v -> {
             if (haveNetwork()){
+                vibrateDevice();
+                final Handler handler = new Handler(Looper.getMainLooper());
+                handler.postDelayed(() -> vibrateDeviceTwice(), 100);
                 Toast.makeText(NoInternet.this,"Wohoooooooo!",Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(NoInternet.this, Magic.class));
                 finish();
             }
             else {
+                vibrateDevice();
                 Toast.makeText(NoInternet.this,"Nope, Still no Luck!",Toast.LENGTH_SHORT).show();
             }
         });
@@ -45,5 +54,23 @@ public class NoInternet extends AppCompatActivity {
                     have_MobileData = true;
         }
         return have_MobileData||have_WIFI;
+    }
+    private void vibrateDevice() {
+        Vibrator v3 = (Vibrator) getSystemService(NoInternet.VIBRATOR_SERVICE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            v3.vibrate(VibrationEffect.createOneShot(28, VibrationEffect.DEFAULT_AMPLITUDE));
+        } else {
+            //deprecated in API 26
+            v3.vibrate(25);
+        }
+    }
+    private void vibrateDeviceTwice() {
+        Vibrator v3 = (Vibrator) getSystemService(NoInternet.VIBRATOR_SERVICE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            v3.vibrate(VibrationEffect.createOneShot(32, VibrationEffect.DEFAULT_AMPLITUDE));
+        } else {
+            //deprecated in API 26
+            v3.vibrate(28);
+        }
     }
 }
