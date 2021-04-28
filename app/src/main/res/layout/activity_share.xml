@@ -4,8 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/choose_me_shared"
     tools:context=".Share">
+
+    <com.nvanbenschoten.motion.ParallaxImageView
+        android:id="@+id/motion_back"
+        style="@style/BackGroundImageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        app:motionIntensity="2.0"
+        android:layout_centerHorizontal="true"
+        tools:ignore="ContentDescription" />
+
     <com.makeramen.roundedimageview.RoundedImageView
         android:id="@+id/sharedBitmap"
         android:layout_width="wrap_content"
