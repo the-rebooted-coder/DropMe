@@ -15,26 +15,41 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.nvanbenschoten.motion.ParallaxImageView;
 
 public class NoInternet extends AppCompatActivity {
     Button retry;
     ParallaxImageView noInternet;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_no_internet);
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
         noInternet = findViewById(R.id.noInternetMotion);
         retry = findViewById(R.id.retryConnection);
         retry.setOnClickListener(v -> {
             if (haveNetwork()){
-                vibrateDevice();
-                final Handler handler = new Handler(Looper.getMainLooper());
-                handler.postDelayed(() -> vibrateDeviceTwice(), 50);
-                Toast.makeText(NoInternet.this,"Wohoooooooo!",Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(NoInternet.this, Magic.class));
-                finish();
+                if(user!=null){
+                    vibrateDevice();
+                    final Handler handler = new Handler(Looper.getMainLooper());
+                    handler.postDelayed(() -> vibrateDeviceTwice(), 50);
+                    Toast.makeText(NoInternet.this,"Wohoooooooo!",Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(NoInternet.this, Magic.class));
+                    finish();
+                }
+                else {
+                    vibrateDevice();
+                    final Handler handler = new Handler(Looper.getMainLooper());
+                    handler.postDelayed(() -> vibrateDeviceTwice(), 50);
+                    Toast.makeText(NoInternet.this,"Wohoooooooo!",Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(NoInternet.this, LoginActivity.class));
+                    finish();
+                }
             }
             else {
                 vibrateDevice();

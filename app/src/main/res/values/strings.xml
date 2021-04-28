@@ -9,4 +9,16 @@
     <string name="biggest_question">Internet?\nYou There?</string>
     <string name="tap_to_begin">Tap to Begin</string>
     <string name="sign_in">Sign In</string>
+    <string-array name="greetings">
+        <item>Welcome to DropMe!</item>
+        <item>Hello</item>
+        <item>नमस्ते</item>
+        <item>Hola</item>
+        <item>Olá</item>
+        <item>こんにちは</item>
+        <item>你好</item>
+        <item>Salve</item>
+        <item>హలో</item>
+        <item>안녕하세요</item>
+    </string-array>
 </resources>

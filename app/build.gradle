@@ -15,7 +15,7 @@ android {
         minSdkVersion 24
         targetSdkVersion 30
         versionCode 1
-        versionName "35"
+        versionName "65"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -74,4 +74,7 @@ dependencies {
     //Firebase Auth
     implementation 'com.google.firebase:firebase-auth:20.0.4'
     implementation 'com.google.android.gms:play-services-auth:19.0.0'
+
+    //Fading Text View
+    implementation 'com.tomer:fadingtextview:2.6'
 }

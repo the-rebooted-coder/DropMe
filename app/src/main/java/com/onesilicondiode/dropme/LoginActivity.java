@@ -3,6 +3,8 @@ package com.onesilicondiode.dropme;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.view.View;
@@ -24,12 +26,13 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 public class LoginActivity extends AppCompatActivity {
-
     private GoogleSignInClient mGoogleSignInClient;
     private final static int RC_SIGN_IN = 123;
     Button signIn;
     private FirebaseAuth mAuth;
     LottieAnimationView loading;
+    LottieAnimationView meanwhile;
+    LottieAnimationView meanwhileMore;
 
     @Override
     protected void onStart() {
@@ -38,6 +41,7 @@ public class LoginActivity extends AppCompatActivity {
         if (user!=null){
             Intent signedIn = new Intent(getApplicationContext(),Magic.class);
             startActivity(signedIn);
+            finish();
         }
     }
 
@@ -46,18 +50,52 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         loading = findViewById(R.id.sign_up_anim);
+        meanwhile = findViewById(R.id.meanwhile);
+        meanwhileMore = findViewById(R.id.meanwhileMore);
+
+        final Handler handler = new Handler(Looper.getMainLooper());
+        handler.postDelayed(() -> {
+            meanwhile.setVisibility(View.VISIBLE);
+            meanwhile.playAnimation();
+            stopNow();
+        }, 1800);
+        final Handler handler2 = new Handler(Looper.getMainLooper());
+        handler2.postDelayed(() -> {
+            meanwhileMore.setVisibility(View.VISIBLE);
+            meanwhileMore.playAnimation();
+            stopNowMore();
+        }, 7000);
+
         //Creating Request
         createRequest();
 
         mAuth= FirebaseAuth.getInstance();
         signIn = findViewById(R.id.signIn);
-        signIn.setOnClickListener(v -> signIn());
+        signIn.setOnClickListener(v -> {
+            loading.setVisibility(View.VISIBLE);
+            loading.playAnimation();
+            signIn.setVisibility(View.INVISIBLE);
+            signIn();
+        });
+    }
+
+    private void stopNow() {
+        final Handler handler = new Handler(Looper.getMainLooper());
+        handler.postDelayed(() -> {
+            meanwhile.setVisibility(View.INVISIBLE);
+            meanwhile.cancelAnimation();
+        }, 2000);
+    }
+
+    private void stopNowMore() {
+        final Handler handler = new Handler(Looper.getMainLooper());
+        handler.postDelayed(() -> {
+            meanwhileMore.setVisibility(View.INVISIBLE);
+            meanwhileMore.cancelAnimation();
+        }, 2000);
     }
 
     private void createRequest() {
-        loading.setVisibility(View.VISIBLE);
-        loading.playAnimation();
-        signIn.setVisibility(View.INVISIBLE);
         // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions
                 .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -106,6 +144,7 @@ public class LoginActivity extends AppCompatActivity {
                         FirebaseUser user = mAuth.getCurrentUser();
                         Intent signedIn = new Intent(getApplicationContext(),Magic.class);
                         startActivity(signedIn);
+                        finish();
 
                     } else {
                         // If sign in fails, display a message to the user.

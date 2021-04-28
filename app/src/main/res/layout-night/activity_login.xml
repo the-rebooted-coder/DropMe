@@ -18,7 +18,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="90dp"
         android:textAlignment="center"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="34sp" />
 
     <Button
@@ -31,6 +31,7 @@
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
         android:layout_centerInParent="true"
+        android:textColor="@color/black"
         android:background="@drawable/sign_in_button"
         android:textSize="18sp"
         android:text="@string/sign_in" />
