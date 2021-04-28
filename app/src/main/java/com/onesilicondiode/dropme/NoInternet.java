@@ -31,7 +31,7 @@ public class NoInternet extends AppCompatActivity {
             if (haveNetwork()){
                 vibrateDevice();
                 final Handler handler = new Handler(Looper.getMainLooper());
-                handler.postDelayed(() -> vibrateDeviceTwice(), 100);
+                handler.postDelayed(() -> vibrateDeviceTwice(), 50);
                 Toast.makeText(NoInternet.this,"Wohoooooooo!",Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(NoInternet.this, Magic.class));
                 finish();
