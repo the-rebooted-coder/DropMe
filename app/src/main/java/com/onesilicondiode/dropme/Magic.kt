@@ -168,7 +168,7 @@ class Magic : AppCompatActivity() {
                                     i_choose_image.visibility = View.GONE
                                     bProcess.visibility = View.GONE
                                     // Save output image
-                                    saveImage("${inputImage!!.name}-DropMe", bitmap) {
+                                    saveImage("${inputImage!!.name}-result", bitmap) {
                                         outputImage = it
                                     }
                                 }
@@ -192,7 +192,6 @@ class Magic : AppCompatActivity() {
                     override fun onLoadCleared(placeholder: Drawable?) {
 
                     }
-
                     override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
                         onLoaded(resource)
                     }
