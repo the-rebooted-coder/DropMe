@@ -14,7 +14,7 @@ android {
         minSdkVersion 24
         targetSdkVersion 30
         versionCode 1
-        versionName "1.0"
+        versionName "35"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -67,6 +67,6 @@ dependencies {
     //Rounded Image
     implementation 'com.makeramen:roundedimageview:2.3.0'
 
-    //Para
+    //Parallax
     implementation 'com.nvanbenschoten.motion:library:1.1.2'
 }
