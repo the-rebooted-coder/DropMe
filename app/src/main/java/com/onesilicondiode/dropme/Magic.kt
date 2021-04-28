@@ -39,7 +39,7 @@ class Magic : AppCompatActivity() {
 
     private val projectDir by lazy {
         val rootPath = Environment.getExternalStorageDirectory().absolutePath
-        File("$rootPath/remove-bg")
+        File("$rootPath/DropMe")
     }
     private var outputImage: File? = null
     private var inputImage: File? = null
