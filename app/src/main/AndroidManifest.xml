@@ -22,6 +22,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DropMe">
+        <activity android:name=".LoginActivity"></activity>
         <activity android:name=".Share" />
         <activity android:name=".NoInternet" />
         <activity android:name=".Magic" />
