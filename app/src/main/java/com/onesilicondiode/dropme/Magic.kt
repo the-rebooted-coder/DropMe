@@ -161,7 +161,7 @@ class Magic : AppCompatActivity() {
                                 info("background removed $bitmap")
                                 runOnUiThread {
                                     // Save output image
-                                    saveImage("${inputImage!!.name}-result", bitmap) {
+                                        saveImage("${inputImage!!.name}-result", bitmap) {
                                         outputImage = it
                                     }
                                     /*
