@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/choose_me_shared"
     tools:context=".Share">
-
     <ImageView
         android:id="@+id/sharedBitmap"
         android:layout_width="wrap_content"
@@ -13,5 +13,4 @@
         tools:srcCompat="@tools:sample/avatars"
         android:layout_centerInParent="true"
         android:contentDescription="@string/choose_image" />
-
 </RelativeLayout>
