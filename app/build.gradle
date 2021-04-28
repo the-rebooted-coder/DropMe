@@ -63,4 +63,7 @@ dependencies {
 
     //Lottie
     implementation 'com.airbnb.android:lottie:3.6.1'
+
+    //Rounded Image
+    implementation 'com.makeramen:roundedimageview:2.3.0'
 }
