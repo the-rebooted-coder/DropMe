@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "597046316807-kh1robh3mljrjo1lvfohbqrr80ci1n8n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.onesilicondiode.dropme",
+            "certificate_hash": "6e6d8aff539067231120003754ca6dbac49834c2"
+          }
+        },
+        {
           "client_id": "597046316807-lr1n8auuoh8quuob6dqrri57ge4f877a.apps.googleusercontent.com",
           "client_type": 3
         }
