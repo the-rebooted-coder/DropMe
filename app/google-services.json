@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "597046316807",
+    "project_id": "dropme-onesilicondiode",
+    "storage_bucket": "dropme-onesilicondiode.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:597046316807:android:18729c86952dc86083bfa2",
+        "android_client_info": {
+          "package_name": "com.onesilicondiode.dropme"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "597046316807-lr1n8auuoh8quuob6dqrri57ge4f877a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCB1XaxbxmmlxGxBqDkyG3xXLe-dBZL08"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "597046316807-lr1n8auuoh8quuob6dqrri57ge4f877a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
