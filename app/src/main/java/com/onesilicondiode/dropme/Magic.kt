@@ -28,6 +28,8 @@ import com.karumi.dexter.listener.PermissionGrantedResponse
 import com.karumi.dexter.listener.single.BasePermissionListener
 import com.karumi.dexter.listener.single.CompositePermissionListener
 import com.karumi.dexter.listener.single.DialogOnDeniedPermissionListener
+import com.makeramen.roundedimageview.RoundedImageView
+import com.nvanbenschoten.motion.ParallaxImageView
 import com.theapache64.removebg.RemoveBg
 import com.theapache64.removebg.utils.ErrorResponse
 import com.theapache64.twinkill.logger.info
@@ -63,6 +65,9 @@ class Magic : AppCompatActivity() {
     @BindView(R.id.pb_progress)
     lateinit var pbProgress: ProgressBar
 
+    @BindView(R.id.motion_back_proper)
+    lateinit var parallaxImageView: ParallaxImageView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_magic)
@@ -85,7 +90,7 @@ class Magic : AppCompatActivity() {
         if (outputImage != null) {
             viewImage(outputImage!!)
         } else {
-            toast("Process Image First!")
+            toast("Tap Process")
         }
     }
     // @OnClick(R.id.iv_output)
@@ -179,7 +184,7 @@ class Magic : AppCompatActivity() {
                                     intent = Intent(applicationContext, Share::class.java)
                                     intent.putExtra("image",byteArray)
                                     startActivity(intent)
-                                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
                                     finish()
                                 }
                             }
@@ -293,5 +298,15 @@ class Magic : AppCompatActivity() {
             //deprecated in API 26
             v3.vibrate(25)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        parallaxImageView!!.registerSensorManager()
+    }
+
+    override fun onPause() {
+        parallaxImageView!!.unregisterSensorManager()
+        super.onPause()
     }
 }

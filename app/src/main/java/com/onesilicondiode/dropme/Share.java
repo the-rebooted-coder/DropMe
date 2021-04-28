@@ -1,5 +1,6 @@
 package com.onesilicondiode.dropme;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -14,8 +15,7 @@ import com.nvanbenschoten.motion.ParallaxImageView;
 public class Share extends AppCompatActivity  {
     RoundedImageView sharedBitmap;
     ParallaxImageView parallaxImageView;
-    private boolean mParallaxSet = true;
-    private boolean mPortraitLock = true;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,11 +25,15 @@ public class Share extends AppCompatActivity  {
         byte[] byteArray = getIntent().getByteArrayExtra("image");
         Bitmap bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
         if (bmp!=null){
-            Toast.makeText(this,"Yay, Bitmap Received",Toast.LENGTH_SHORT).show();
             sharedBitmap.setImageBitmap(bmp);
         }
         else {
+            //Pure Exception Handling
             Toast.makeText(this,"We encountered an error, Please Retry",Toast.LENGTH_SHORT).show();
+            Intent toHome = new Intent(Share.this,Magic.class);
+            startActivity(toHome);
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+            finish();
         }
     }
     @Override

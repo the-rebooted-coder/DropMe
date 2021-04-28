@@ -15,13 +15,17 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.nvanbenschoten.motion.ParallaxImageView;
+
 public class NoInternet extends AppCompatActivity {
     Button retry;
+    ParallaxImageView noInternet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_no_internet);
+        noInternet = findViewById(R.id.noInternetMotion);
         retry = findViewById(R.id.retryConnection);
         retry.setOnClickListener(v -> {
             if (haveNetwork()){
@@ -72,5 +76,15 @@ public class NoInternet extends AppCompatActivity {
             //deprecated in API 26
             v3.vibrate(28);
         }
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        noInternet.registerSensorManager();
+    }
+    @Override
+    public void onPause() {
+        noInternet.unregisterSensorManager();
+        super.onPause();
     }
 }

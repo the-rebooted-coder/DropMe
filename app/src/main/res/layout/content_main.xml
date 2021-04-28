@@ -5,9 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:animateLayoutChanges="true"
-    android:background="@drawable/choose_me"
+    android:background="@color/black"
     tools:context=".Magic"
     tools:showIn="@layout/activity_magic">
+
+    <com.nvanbenschoten.motion.ParallaxImageView
+        android:id="@+id/motion_back_proper"
+        style="@style/BackGroundImageViewProper"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        app:motionIntensity="1.5"
+        android:layout_centerHorizontal="true"
+        tools:ignore="ContentDescription" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
@@ -55,7 +65,7 @@
             android:id="@+id/waitingLottie"
             android:layout_width="310dp"
             android:layout_height="310dp"
-            app:lottie_fileName="loading.json"
+            app:lottie_fileName="loader.json"
             app:lottie_autoPlay="false"
             app:lottie_loop="true"
             android:visibility="invisible"
