@@ -118,7 +118,6 @@ class Magic : AppCompatActivity() {
                 waitingLottie.playAnimation()
                 // permission granted, compress the inputImage now
                 compressImage(inputImage!!) { bitmap ->
-
                     info("Image compressed")
                     saveImage("${System.currentTimeMillis()}", bitmap) { compressedImage ->
 
