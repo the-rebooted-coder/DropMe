@@ -65,7 +65,7 @@
             android:id="@+id/waitingLottie"
             android:layout_width="310dp"
             android:layout_height="310dp"
-            app:lottie_fileName="loader.json"
+            app:lottie_fileName="loading.json"
             app:lottie_autoPlay="false"
             app:lottie_loop="true"
             android:visibility="invisible"

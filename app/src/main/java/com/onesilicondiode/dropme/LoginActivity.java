@@ -1,12 +1,17 @@
 package com.onesilicondiode.dropme;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -24,6 +29,7 @@ public class LoginActivity extends AppCompatActivity {
     private final static int RC_SIGN_IN = 123;
     Button signIn;
     private FirebaseAuth mAuth;
+    LottieAnimationView loading;
 
     @Override
     protected void onStart() {
@@ -39,16 +45,19 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        loading = findViewById(R.id.sign_up_anim);
         //Creating Request
         createRequest();
 
         mAuth= FirebaseAuth.getInstance();
-
         signIn = findViewById(R.id.signIn);
         signIn.setOnClickListener(v -> signIn());
     }
 
     private void createRequest() {
+        loading.setVisibility(View.VISIBLE);
+        loading.playAnimation();
+        signIn.setVisibility(View.INVISIBLE);
         // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions
                 .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -61,6 +70,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void signIn() {
+        vibrateDevice();
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
@@ -78,7 +88,10 @@ public class LoginActivity extends AppCompatActivity {
                 firebaseAuthWithGoogle(account.getIdToken());
             } catch (ApiException e) {
                 // Google Sign In failed, update UI appropriately
-                Toast.makeText(LoginActivity.this,e.getMessage(),Toast.LENGTH_SHORT).show();
+                loading.setVisibility(View.INVISIBLE);
+                signIn.setVisibility(View.VISIBLE);
+                loading.cancelAnimation();
+                Toast.makeText(LoginActivity.this,"Something went wrong",Toast.LENGTH_LONG).show();
             }
         }
     }
@@ -99,5 +112,14 @@ public class LoginActivity extends AppCompatActivity {
                         Toast.makeText(LoginActivity.this, "Sign In Failed", Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+    private void vibrateDevice() {
+        Vibrator v3 = (Vibrator) getSystemService(NoInternet.VIBRATOR_SERVICE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            v3.vibrate(VibrationEffect.createOneShot(30, VibrationEffect.DEFAULT_AMPLITUDE));
+        } else {
+            //deprecated in API 26
+            v3.vibrate(27);
+        }
     }
 }

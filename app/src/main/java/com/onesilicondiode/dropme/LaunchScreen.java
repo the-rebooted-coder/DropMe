@@ -7,19 +7,29 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class LaunchScreen extends AppCompatActivity {
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if(haveNetwork()){
-            startActivity(new Intent(LaunchScreen.this, Magic.class));
-            finish();
+            if(user!=null){
+                startActivity(new Intent(LaunchScreen.this, Magic.class));
+            }
+            else {
+                startActivity(new Intent(LaunchScreen.this, LoginActivity.class));
+            }
         }
         else {
             startActivity(new Intent(LaunchScreen.this, NoInternet.class));
-            finish();
         }
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        finish();
     }
     //Network Checking Boolean
     private boolean haveNetwork() {

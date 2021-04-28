@@ -22,4 +22,14 @@
         android:textSize="18sp"
         android:text="@string/sign_in" />
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/sign_up_anim"
+        android:layout_width="245dp"
+        android:layout_height="220dp"
+        android:visibility="invisible"
+        app:lottie_autoPlay="false"
+        android:layout_centerInParent="true"
+        app:lottie_fileName="sign_up_loader.json"
+        app:lottie_loop="true" />
+
 </RelativeLayout>
