@@ -33,6 +33,7 @@ import com.theapache64.removebg.utils.ErrorResponse
 import com.theapache64.twinkill.logger.info
 import kotlinx.android.synthetic.main.choose_image_inc.*
 import kotlinx.android.synthetic.main.content_main.*
+import java.io.ByteArrayOutputStream
 import java.io.File
 
 class Magic : AppCompatActivity() {
@@ -157,8 +158,13 @@ class Magic : AppCompatActivity() {
                                 }
                             }
                             override fun onSuccess(bitmap: Bitmap) {
-                                info("background removed from bg , and output is $bitmap")
+                                info("background removed $bitmap")
                                 runOnUiThread {
+                                    // Save output image
+                                    saveImage("${inputImage!!.name}-result", bitmap) {
+                                        outputImage = it
+                                    }
+                                    /*
                                     magic.visibility = View.INVISIBLE
                                     ivInput.visibility = View.VISIBLE
                                     waitingLottie.visibility = View.GONE
@@ -166,13 +172,17 @@ class Magic : AppCompatActivity() {
                                     ivInput.setImageBitmap(bitmap)
                                     i_choose_image.visibility = View.GONE
                                     bProcess.visibility = View.GONE
-                                    // Save output image
-                                    saveImage("${inputImage!!.name}-result", bitmap) {
-                                        outputImage = it
-                                    }
+                                     */
+                                    val stream = ByteArrayOutputStream()
+                                    bitmap.compress(Bitmap.CompressFormat.PNG, 95, stream)
+                                    val byteArray: ByteArray = stream.toByteArray()
+                                    intent = Intent(applicationContext, Share::class.java)
+                                    intent.putExtra("image",byteArray)
+                                    startActivity(intent)
+                                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                                    finish()
                                 }
                             }
-
                         })
                     }
                 }
@@ -212,9 +222,6 @@ class Magic : AppCompatActivity() {
 
         onSaved(imageFile)
     }
-    /**
-     * To show an alert message with title 'Error'
-     */
     private fun showErrorAlert(message: String) {
         AlertDialog.Builder(this)
                 .setTitle("Error")
@@ -250,7 +257,6 @@ class Magic : AppCompatActivity() {
                 .withListener(listener)
                 .check()
     }
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (ImagePicker.shouldHandle(requestCode, resultCode, data)) {
 
