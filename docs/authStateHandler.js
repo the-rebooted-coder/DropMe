@@ -1,9 +1,9 @@
-firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-        //User Signed In Do Something Like a Redirect
-      window.location = "home.html";
-    }
-    else {
-        //not signed in
-    }
-});
+var user = firebase.auth().currentUser;
+
+if (user) {
+    window.location = 'home.html';
+}
+
+else {
+    console.log('No User Recorded.')
+}
