@@ -1,7 +1,8 @@
 function googleSignOut() {
-    firebase.auth().signOut().then(function() {
-        console.log('Signed Out');
-    }, function(error) {
-        console.error('Sign Out Error', error);
+    firebase.auth().signOut().then(() => {
+        // Sign-out successful.
+    }).catch((error) => {
+        // An error happened.
     });
+      
 }
