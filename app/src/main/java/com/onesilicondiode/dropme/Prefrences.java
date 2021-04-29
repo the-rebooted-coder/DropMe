@@ -27,6 +27,7 @@ public class Prefrences extends AppCompatActivity {
     private View background;
     RoundedImageView photo;
     TextView email;
+    TextView email_full;
     ParallaxImageView userBack;
     Button signOut;
     @Override
