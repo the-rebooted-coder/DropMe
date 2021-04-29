@@ -4,9 +4,15 @@ function googleSignIn() {
     
     // using the object we will authenticate the user.
     firebase.auth().signInWithPopup(googleAuth);
-
-    if(user) {
-        //After successful login, user will be redirected to home.html
-        window.location = 'home.html'; 
-    }
 }
+
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+        //User Signed In Do Something Like a Redirect
+      window.location = "splash.html";
+    }
+    else {
+      //User not Signed Do Nothing
+      //Keep this for future condtions
+    }
+});
