@@ -48,7 +48,7 @@
         var user = firebase.auth().currentUser;
         firebase.auth().onAuthStateChanged(function(user) {
             if (user) {
-                window.location = 'hone.html';
+                window.location = 'home.html';
             }            
             else {
                 console.log('No Users Detected.!')
