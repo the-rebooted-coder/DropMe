@@ -1,0 +1,8 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: "PSBold";
+    src: url(./Assets/PSBold.ttf);
+}
