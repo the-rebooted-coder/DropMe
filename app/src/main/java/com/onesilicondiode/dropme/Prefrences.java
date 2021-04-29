@@ -39,7 +39,7 @@ public class Prefrences extends AppCompatActivity {
     }
 
     private void circularRevealActivity() {
-        int cx = background.getRight() - getDips(100);
+        int cx = background.getRight() - getDips(20);
         int cy = background.getBottom() - getDips(60);
 
         float finalRadius = Math.max(background.getWidth(), background.getHeight());
