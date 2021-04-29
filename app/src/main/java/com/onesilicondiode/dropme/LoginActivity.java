@@ -144,6 +144,7 @@ public class LoginActivity extends AppCompatActivity {
                         FirebaseUser user = mAuth.getCurrentUser();
                         Intent signedIn = new Intent(getApplicationContext(),Magic.class);
                         startActivity(signedIn);
+                        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                         finish();
 
                     } else {

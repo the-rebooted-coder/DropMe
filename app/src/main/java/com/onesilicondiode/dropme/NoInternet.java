@@ -40,6 +40,7 @@ public class NoInternet extends AppCompatActivity {
                     handler.postDelayed(() -> vibrateDeviceTwice(), 50);
                     Toast.makeText(NoInternet.this,"Wohoooooooo!",Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(NoInternet.this, Magic.class));
+                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                     finish();
                 }
                 else {
@@ -48,6 +49,7 @@ public class NoInternet extends AppCompatActivity {
                     handler.postDelayed(() -> vibrateDeviceTwice(), 50);
                     Toast.makeText(NoInternet.this,"Wohoooooooo!",Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(NoInternet.this, LoginActivity.class));
+                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                     finish();
                 }
             }
