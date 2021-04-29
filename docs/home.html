@@ -13,7 +13,7 @@
     </div>
     <!-- Images -->
     <div class="img-container">
-        <img src="#" class="image-card">
+        <img src ="#" id ="img-id" class="image-card">
     </div>
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
@@ -42,6 +42,9 @@
     firebase.initializeApp(firebaseConfig);
     firebase.analytics();      
     
+
+    
+
 //checking for user
     firebase.auth().onAuthStateChanged(user => {
     if (user) {
@@ -56,10 +59,13 @@ function getUserData(uid) {
     })
 }
 
-//reading the data
+//reading the data from a particular file, (for test purpose)
 firebase.database().ref('demo').on('value',(snap)=>{
     console.log(snap.val());
   });
+
+  const img = document.getElementById("img-id");
+    img.src= snap.val();
     
     </script>
 </body>
