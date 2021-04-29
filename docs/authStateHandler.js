@@ -5,5 +5,5 @@ if (user) {
 }
 
 else {
-    console.log('No User Recorded.')
+    console.log('No User Recorded.');
 }
