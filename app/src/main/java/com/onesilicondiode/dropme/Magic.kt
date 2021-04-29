@@ -13,7 +13,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
 import androidx.core.content.FileProvider
 import butterknife.BindView
 import butterknife.ButterKnife
@@ -67,7 +66,7 @@ class Magic : AppCompatActivity() {
         setContentView(R.layout.activity_magic)
 
         val openSettings = findViewById<FloatingActionButton>(R.id.settings)
-        openSettings.setOnClickListener(View.OnClickListener { v -> vibrateDevice();startRevealActivity(v) })
+        openSettings.setOnClickListener(View.OnClickListener { v -> vibrateDevice(); startActivity(Intent(this@Magic, Prefrences::class.java))})
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -292,21 +291,5 @@ class Magic : AppCompatActivity() {
     override fun onPause() {
         parallaxImageView!!.unregisterSensorManager()
         super.onPause()
-    }
-    private fun startRevealActivity(v: View) {
-        //calculates the center of the View v you are passing
-        val revealX = (v.x + v.width / 2).toInt()
-        val revealY = (v.y + v.height / 2).toInt()
-
-        //create an intent, that launches the second activity and pass the x and y coordinates
-        val intent = Intent(this, Prefrences::class.java)
-   //     intent.putExtra(RevealAnimation.EXTRA_CIRCULAR_REVEAL_X, revealX)
-   //     intent.putExtra(RevealAnimation.EXTRA_CIRCULAR_REVEAL_Y, revealY)
-
-        //just start the activity as an shared transition, but set the options bundle to null
-        ActivityCompat.startActivity(this, intent, null)
-
-        //to prevent strange behaviours override the pending transitions
-        overridePendingTransition(0, 0)
     }
 }

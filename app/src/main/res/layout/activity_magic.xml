@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/root_layout"
     android:animateLayoutChanges="true"
     tools:context=".Magic">
     <include layout="@layout/content_main"/>
@@ -15,8 +16,6 @@
         app:rippleColor="@color/amber_200"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginBottom="60dp"
-        android:layout_marginEnd="30dp"
         android:layout_height="wrap_content"
         android:clickable="true"
         app:srcCompat="@drawable/ic_baseline_adjust_24"
