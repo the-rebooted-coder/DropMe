@@ -43,16 +43,17 @@
             // using the object we will authenticate the user.
             firebase.auth().signInWithPopup(googleAuth);
         } 
-        window.onload = function() {
-            var user = firebase.auth().currentUser;
+    </script>
+    <script>
+        var user = firebase.auth().currentUser;
+        firebase.auth().onAuthStateChanged(function(user) {
             if (user) {
-                window.location = 'home.html';
-            }
-
+                window.location = 'hone.html';
+            }            
             else {
-                console.log('No User Recorded.');
+                console.log('No Users Detected.!')
             }
-        }   
+        });
     </script>
 </body>
 </html>
