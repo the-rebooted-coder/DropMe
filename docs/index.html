@@ -5,11 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DropMe</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Welcome to DropMe!</h1>
-    <button onclick=googleSignIn()>Continue With Google.</button>
-
+    <div class="head">
+        <h1>Welcome to DropMe!</h1>
+    </div>  
+    <div class="sign-in">
+        <button class="sign-in-btn" onclick=googleSignIn() aria-label="Continue With Google"></button>
+    </div>  
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-app.js"></script>
 
@@ -35,6 +39,25 @@
     firebase.initializeApp(firebaseConfig);
     firebase.analytics();        
     </script>
-    <script src="./login.js"></script>
+    <script>
+        function googleSignIn() {
+            // Google provider object is created here.
+            const googleAuth = new firebase.auth.GoogleAuthProvider();
+            
+            // using the object we will authenticate the user.
+            firebase.auth().signInWithPopup(googleAuth);
+        } 
+    </script>
+    <script>
+        var user = firebase.auth().currentUser;
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+                window.location = 'home.html';
+            }            
+            else {
+                console.log('No Users Detected.!')
+            }
+        });
+    </script>
 </body>
 </html>
