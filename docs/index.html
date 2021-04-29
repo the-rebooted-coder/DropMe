@@ -5,11 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DropMe</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Welcome to DropMe!</h1>
-    <button onclick=googleSignIn()>Continue With Google.</button>
-
+    <div class="head">
+        <h1>Welcome to DropMe!</h1>
+    </div>  
+    <div class="sign-in">
+        <button class="sign-in-btn" onclick=googleSignIn() aria-label="Continue With Google"></button>
+    </div>  
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-app.js"></script>
 
