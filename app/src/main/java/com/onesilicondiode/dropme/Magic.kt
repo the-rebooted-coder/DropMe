@@ -6,15 +6,14 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.os.*
-import android.view.KeyEvent
 import android.view.View
 import android.view.WindowManager
 import android.widget.ImageView
-import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.core.content.FileProvider
 import butterknife.BindView
 import butterknife.ButterKnife
@@ -23,6 +22,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.esafirm.imagepicker.features.ImagePicker
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.listener.PermissionDeniedResponse
 import com.karumi.dexter.listener.PermissionGrantedResponse
@@ -59,18 +59,16 @@ class Magic : AppCompatActivity() {
     @BindView(R.id.b_process)
     lateinit var bProcess: View
 
-    @BindView(R.id.tv_progress)
-    lateinit var tvProgress: TextView
-
-    @BindView(R.id.pb_progress)
-    lateinit var pbProgress: ProgressBar
-
     @BindView(R.id.motion_back_proper)
     lateinit var parallaxImageView: ParallaxImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_magic)
+
+        val openSettings = findViewById<FloatingActionButton>(R.id.settings)
+        openSettings.setOnClickListener(View.OnClickListener { v -> vibrateDevice();startRevealActivity(v) })
+
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         ButterKnife.bind(this)
@@ -84,7 +82,6 @@ class Magic : AppCompatActivity() {
                 .single()
                 .start()
     }
-
     @OnClick(R.id.iv_input)
     fun onOutputClicked() {
         if (outputImage != null) {
@@ -93,8 +90,6 @@ class Magic : AppCompatActivity() {
             toast("Tap Process")
         }
     }
-    // @OnClick(R.id.iv_output)
-
     private fun viewImage(inputImage: File) {
 
         val uri = FileProvider.getUriForFile(this, "${BuildConfig.APPLICATION_ID}.provider", inputImage)
@@ -169,15 +164,6 @@ class Magic : AppCompatActivity() {
                                         saveImage("${inputImage!!.name}-result", bitmap) {
                                         outputImage = it
                                     }
-                                    /*
-                                    magic.visibility = View.INVISIBLE
-                                    ivInput.visibility = View.VISIBLE
-                                    waitingLottie.visibility = View.GONE
-                                    waitingLottie.cancelAnimation()
-                                    ivInput.setImageBitmap(bitmap)
-                                    i_choose_image.visibility = View.GONE
-                                    bProcess.visibility = View.GONE
-                                     */
                                     val stream = ByteArrayOutputStream()
                                     bitmap.compress(Bitmap.CompressFormat.PNG, 95, stream)
                                     val byteArray: ByteArray = stream.toByteArray()
@@ -299,25 +285,28 @@ class Magic : AppCompatActivity() {
             v3.vibrate(25)
         }
     }
-
     override fun onResume() {
         super.onResume()
         parallaxImageView!!.registerSensorManager()
     }
-
     override fun onPause() {
         parallaxImageView!!.unregisterSensorManager()
         super.onPause()
     }
-    var i = 0
-    override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
-        if (event.getKeyCode() === KeyEvent.KEYCODE_VOLUME_DOWN) {
-            i++
-            if (i == 2) {
-                //do something
-                i=0
-            }
-        }
-        return super.onKeyDown(keyCode, event)
+    private fun startRevealActivity(v: View) {
+        //calculates the center of the View v you are passing
+        val revealX = (v.x + v.width / 2).toInt()
+        val revealY = (v.y + v.height / 2).toInt()
+
+        //create an intent, that launches the second activity and pass the x and y coordinates
+        val intent = Intent(this, Prefrences::class.java)
+   //     intent.putExtra(RevealAnimation.EXTRA_CIRCULAR_REVEAL_X, revealX)
+   //     intent.putExtra(RevealAnimation.EXTRA_CIRCULAR_REVEAL_Y, revealY)
+
+        //just start the activity as an shared transition, but set the options bundle to null
+        ActivityCompat.startActivity(this, intent, null)
+
+        //to prevent strange behaviours override the pending transitions
+        overridePendingTransition(0, 0)
     }
 }
