@@ -1,0 +1,26 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: "PSBold";
+    src: url(./Assets/PSBold.ttf);
+}
+
+body {
+    background: url(./Assets/background.png);
+}
+
+h1 {
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    font-family: "PSBold";
+    font-size: 40px;
+}
+
+.image-container {
+    display: flex;
+    margin: 10px;
+    margin-left: 100px;
+}
