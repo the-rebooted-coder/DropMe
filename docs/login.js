@@ -9,7 +9,7 @@ function googleSignIn() {
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
         //User Signed In Do Something Like a Redirect
-      window.location = "splash.html";
+      window.location = "home.html";
     }
     else {
       //User not Signed Do Nothing
