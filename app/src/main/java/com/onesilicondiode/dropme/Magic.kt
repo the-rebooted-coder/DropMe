@@ -6,6 +6,7 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.os.*
+import android.view.KeyEvent
 import android.view.View
 import android.view.WindowManager
 import android.widget.ImageView
@@ -28,7 +29,6 @@ import com.karumi.dexter.listener.PermissionGrantedResponse
 import com.karumi.dexter.listener.single.BasePermissionListener
 import com.karumi.dexter.listener.single.CompositePermissionListener
 import com.karumi.dexter.listener.single.DialogOnDeniedPermissionListener
-import com.makeramen.roundedimageview.RoundedImageView
 import com.nvanbenschoten.motion.ParallaxImageView
 import com.theapache64.removebg.RemoveBg
 import com.theapache64.removebg.utils.ErrorResponse
@@ -308,5 +308,16 @@ class Magic : AppCompatActivity() {
     override fun onPause() {
         parallaxImageView!!.unregisterSensorManager()
         super.onPause()
+    }
+    var i = 0
+    override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
+        if (event.getKeyCode() === KeyEvent.KEYCODE_VOLUME_DOWN) {
+            i++
+            if (i == 2) {
+                //do something
+                i=0
+            }
+        }
+        return super.onKeyDown(keyCode, event)
     }
 }
