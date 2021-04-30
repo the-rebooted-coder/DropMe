@@ -73,15 +73,15 @@ function getUserData(uid) {
 }
 
 //reading the data from a particular file, (for test purpose)
-//firebase.database().ref('demo').on('value',(snap)=>{
-  //  console.log(snap.val());
-  //});
+firebase.database().ref('demo').on('value',(snap)=>{
+   console.log(snap.val());
+  });
 
 </script>
 
 <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
 
-<script language="javascript" type="text/javascript" src="trial.js"></script>    
+<script type="text/javascript" src="trial.js"></script>    
 
 </body>
 </html>
