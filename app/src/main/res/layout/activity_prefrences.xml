@@ -39,6 +39,7 @@
         android:layout_height="450dp"
         android:elevation="12dp"
         android:layout_marginTop="20dp"
+        android:backgroundTint="#04051C"
         android:layout_below="@+id/accPhoto"
         app:cardCornerRadius="25dp"
         android:layout_centerHorizontal="true"
@@ -89,7 +90,7 @@
     <View
         android:layout_below="@+id/nameHolder"
         android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:layout_marginTop="-10dp"
-        android:background="#04051C"/>
+        android:layout_height="40dp"
+        android:layout_marginTop="-40dp"
+        android:background="#1B1E5B"/>
 </RelativeLayout>
