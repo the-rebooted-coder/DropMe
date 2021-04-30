@@ -11,18 +11,20 @@
 
 
     <table>
-        <tr><th>Image from the Database</th></tr>
-        <tr>
-            <td id="gallery_div"></td>
-        </tr>
+        <thead>
+            Image from the Database
+        </thead>
+        <tbody>
+            <tr id="gallery_div"></tr>
+        </tbody>
     </table>
 
 
 
 
-    <div class="head">
+    <!-- <div class="head">
         <h1>My Saved Images</h1>
-    </div>
+    </div> -->
     <!-- Images -->
     <div class="gallery_div">
     </div>
@@ -57,7 +59,7 @@
     
 
 //checking for user
-    firebase.auth().onAuthStateChanged(user => {
+firebase.auth().onAuthStateChanged(user => {
     if (user) {
         getUserData(user.uid)
     }
@@ -65,20 +67,24 @@
 
 //getting user data
 function getUserData(uid) {
-    firebase.database().ref('users/' + uid).once("value", snap => {
+    firebase.database().ref('users/'+uid).once("value", snap => {
     console.log(snap.val())
     })
 }
 
 //reading the data from a particular file, (for test purpose)
-firebase.database().ref('demo').on('value',(snap)=>{
+firebase.database().ref('users/').on('value',(snap)=>{
    console.log(snap.val());
 });
 
+var rootref = firebase.database().ref('users/').child('imageUrl');
+rootref.on("child_added", snap =>{
+    var image = snap.child("imageUrl").val();
+    $("#gallery_div").append("<img src=" + image + "></img>");
+});
 </script>
 
 <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
-<script type="text/javascript" src="trial.js"></script>    
 
 </body>
 </html>
