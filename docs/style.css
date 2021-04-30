@@ -10,6 +10,7 @@
 html, body {
     font-family: "PSBold";
     margin: 0;
+    background-color: #000;
     background:url(./Assets/background.png);
 }
 
