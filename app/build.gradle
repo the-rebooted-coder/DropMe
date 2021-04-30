@@ -15,7 +15,7 @@ android {
         minSdkVersion 24
         targetSdkVersion 30
         versionCode 1
-        versionName "65"
+        versionName "105"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -79,4 +79,7 @@ dependencies {
 
     //Fading Text View
     implementation 'com.tomer:fadingtextview:2.6'
+
+    //Double Click Listener
+    implementation 'com.github.pedromassango:doubleClick:3.0'
 }

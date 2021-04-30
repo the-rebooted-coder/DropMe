@@ -14,14 +14,23 @@ import android.view.ViewAnimationUtils;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.nvanbenschoten.motion.ParallaxImageView;
+import com.pedromassango.doubleclick.DoubleClick;
+import com.pedromassango.doubleclick.DoubleClickListener;
 
 public class Prefrences extends AppCompatActivity {
     private View background;
@@ -30,24 +39,49 @@ public class Prefrences extends AppCompatActivity {
     TextView email_full;
     ParallaxImageView userBack;
     Button signOut;
+    int counter = 0;
+    private GoogleSignInClient mGoogleSignInClient;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_prefrences);
         userBack = findViewById(R.id.userMotion);
         signOut = findViewById(R.id.signOut);
-        signOut.setOnClickListener(v -> {
-            FirebaseAuth.getInstance().signOut();
-            vibrateDevice();
-            Intent toBack = new Intent(Prefrences.this,LoginActivity.class);
-            startActivity(toBack);
-            finishAffinity();
-            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+        signOut.setOnClickListener(new DoubleClick(new DoubleClickListener() {
+            @Override
+            public void onSingleClick(View view) {
+                vibrateDevice();
+                Toast.makeText(Prefrences.this,"Tap twice to Logout",Toast.LENGTH_SHORT).show();
+            }
 
-        });
+            @Override
+            public void onDoubleClick(View view) {
+                FirebaseAuth.getInstance().signOut();
+                vibrateDevice();
+                fullyLogout();
+            }
+        }));
+
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         photo = findViewById(R.id.accPhoto);
         email = findViewById(R.id.accName);
+        email.setOnClickListener(v -> {
+            if(counter == 0){
+                Toast.makeText(this,"Now showing userID",Toast.LENGTH_SHORT).show();
+                email.setText(user.getUid());
+                counter++;
+            }
+            else {
+                email.setText(user.getDisplayName());
+                counter = 0;
+            }
+        });
         email_full = findViewById(R.id.accEmail);
         Uri photoUrl = user.getPhotoUrl(); Glide.with(this).load(photoUrl).into(photo);
         String personEmail = user.getDisplayName();
@@ -73,6 +107,17 @@ public class Prefrences extends AppCompatActivity {
 
         }
 
+    }
+
+    private void fullyLogout() {
+        mGoogleSignInClient.signOut().addOnCompleteListener(this,
+                task -> {
+                    Toast.makeText(Prefrences.this,"Sign out successful",Toast.LENGTH_SHORT).show();
+                    Intent toBack = new Intent(Prefrences.this,LoginActivity.class);
+                    startActivity(toBack);
+                    finishAffinity();
+                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                });
     }
 
     private void circularRevealActivity() {
