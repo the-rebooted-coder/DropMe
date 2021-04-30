@@ -18,3 +18,12 @@ h1 {
     font-family: "PSBold";
     font-size: 40px;
 }
+
+table {
+    border: 1px solid white;
+    width: 100%;
+}
+
+tr {
+    width: 100%;
+}

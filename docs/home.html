@@ -11,11 +11,11 @@
 
 
     <table>
-        <thead>
-            Image from the Database
-        </thead>
+        <thead>Image from the Database</thead>
         <tbody>
-            <tr id="gallery_div"></tr>
+            <tr id="gallery_div">
+
+            </tr>
         </tbody>
     </table>
 
@@ -26,8 +26,9 @@
         <h1>My Saved Images</h1>
     </div> -->
     <!-- Images -->
-    <div class="gallery_div">
-    </div>
+    <!-- <div class="img-container">
+        <img src ="#" id ="img-id" class="image-card">
+    </div> -->
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-app.js"></script>
@@ -59,15 +60,32 @@
     
 
 //checking for user
-firebase.auth().onAuthStateChanged(user => {
-    if (user) {
-        getUserData(user.uid)
-    }
+const promise = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        const uid = firebase.auth().currentUser;
+        var userId = uid.uid;
+        console.log(userId);
+        resolve(userId);
+        console.log(uid.email);
+    }, 2000);
+})
+
+promise.then(userId => {
+    console.log("UID is here!");
+    console.log(userId + "Hurray!");
+
+    var rootref = firebase.database().ref().child(userId);
+    rootref.on("child_added", snap =>{
+    console.log("success"+userId);
+    var image = snap.child("imageUrl").val();
+            
+    $("#gallery_div").append("<img src=" + image + "></img>");
+    });
 })
 
 //getting user data
-function getUserData(uid) {
-    firebase.database().ref('users/'+uid).once("value", snap => {
+function getUserData(userId) {
+    firebase.database().ref('users/' + userId).once("value", snap => {
     console.log(snap.val())
     })
 }
@@ -77,14 +95,20 @@ firebase.database().ref('users/').on('value',(snap)=>{
    console.log(snap.val());
 });
 
-var rootref = firebase.database().ref('users/').child('imageUrl');
-rootref.on("child_added", snap =>{
-    var image = snap.child("imageUrl").val();
-    $("#gallery_div").append("<img src=" + image + "></img>");
-});
+
+// var rootref = firebase.database().ref().child('users/');
+
+// rootref.on("child_added", snap =>{
+//     console.log("success"+userId);
+//     var image = snap.child("imageUrl").val();
+            
+//     $("#gallery_div").append("<img src=" + image + "></img>");
+
+// });
 </script>
 
 <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+
 
 </body>
 </html>
