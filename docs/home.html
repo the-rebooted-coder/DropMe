@@ -8,16 +8,30 @@
     <link rel="stylesheet" href="./style-home.css">
 </head>
 <body>
+
+
+    <table>
+        <tr><th>Image from the Database</th></tr>
+        <tr>
+            <td id="gallery_div"></td>
+        </tr>
+
+    </table>
+
+
+
+
     <div class="head">
         <h1>My Saved Images</h1>
     </div>
     <!-- Images -->
     <div class="img-container">
-        <img src="#" class="image-card">
+        <img src ="#" id ="img-id" class="image-card">
     </div>
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-database.js"></script>
 
     <!-- TODO: Add SDKs for Firebase products that you want to use
         https://firebase.google.com/docs/web/setup#available-libraries -->
@@ -39,7 +53,35 @@
     
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
-    firebase.analytics();        
-    </script>
+    firebase.analytics();      
+    
+
+    
+
+//checking for user
+    firebase.auth().onAuthStateChanged(user => {
+    if (user) {
+        getUserData(user.uid)
+    }
+})
+
+//getting user data
+function getUserData(uid) {
+    firebase.database().ref('users/' + uid).once("value", snap => {
+    console.log(snap.val())
+    })
+}
+
+//reading the data from a particular file, (for test purpose)
+//firebase.database().ref('demo').on('value',(snap)=>{
+  //  console.log(snap.val());
+  //});
+
+</script>
+
+<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+
+<script language="javascript" type="text/javascript" src="trial.js"></script>    
+
 </body>
 </html>
