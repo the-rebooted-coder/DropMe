@@ -11,24 +11,12 @@
 
 
     <table>
-        <thead>Image from the Database</thead>
         <tbody>
             <tr id="gallery_div">
 
             </tr>
         </tbody>
     </table>
-
-
-
-
-    <!-- <div class="head">
-        <h1>My Saved Images</h1>
-    </div> -->
-    <!-- Images -->
-    <!-- <div class="img-container">
-        <img src ="#" id ="img-id" class="image-card">
-    </div> -->
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-app.js"></script>
@@ -79,7 +67,7 @@ promise.then(userId => {
     console.log("success"+userId);
     var image = snap.child("imageUrl").val();
             
-    $("#gallery_div").append("<img src=" + image + "></img>");
+    $("#gallery_div").append("<img src=" + image + "></img><br>");
     });
 })
 

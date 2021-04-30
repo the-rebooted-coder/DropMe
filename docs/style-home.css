@@ -20,10 +20,12 @@ h1 {
 }
 
 table {
-    border: 1px solid white;
-    width: 100%;
+    display: flex;
+    justify-content:center;
 }
 
-tr {
+img {
     width: 100%;
+    border: 5px solid #fff;
+    border-radius: 10px;
 }
