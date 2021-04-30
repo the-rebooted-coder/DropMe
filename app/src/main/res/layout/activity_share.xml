@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
     tools:context=".Share">
 
     <com.nvanbenschoten.motion.ParallaxImageView
@@ -29,4 +30,14 @@
         app:riv_border_color="#C1C1C1"
         app:riv_mutate_background="true"
         android:contentDescription="@string/choose_image" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/shootRocket"
+        android:layout_width="210dp"
+        android:layout_height="210dp"
+        android:layout_centerInParent="true"
+        app:lottie_fileName="rocket.json"
+        app:lottie_autoPlay="false"
+        app:lottie_loop="false"
+        android:visibility="invisible"/>
 </RelativeLayout>

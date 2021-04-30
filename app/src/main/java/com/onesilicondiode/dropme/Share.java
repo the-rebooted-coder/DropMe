@@ -6,8 +6,14 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.provider.MediaStore;
+import android.view.MotionEvent;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Toast;
@@ -15,6 +21,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.airbnb.lottie.LottieAnimationView;
+import com.github.pwittchen.swipe.library.rx2.Swipe;
+import com.github.pwittchen.swipe.library.rx2.SwipeListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -24,6 +33,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.makeramen.roundedimageview.RoundedImageView;
@@ -35,17 +45,22 @@ public class Share extends AppCompatActivity  {
     RoundedImageView sharedBitmap;
     ParallaxImageView parallaxImageView;
     String myUID;
+    private Swipe swipe;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     private DatabaseReference root = FirebaseDatabase.getInstance().getReference(user.getUid());
     private StorageReference reference = FirebaseStorage.getInstance().getReference();
     DropMe dropMe;
+    Vibrator v3;
     private Uri imageUri;
+    LottieAnimationView shootRocket;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_share);
+        v3 = (Vibrator) getSystemService(Share.VIBRATOR_SERVICE);
         parallaxImageView = findViewById(R.id.motion_back);
+        shootRocket = findViewById(R.id.shootRocket);
         dropMe = new DropMe();
         sharedBitmap = findViewById(R.id.sharedBitmap);
         byte[] byteArray = getIntent().getByteArrayExtra("image");
@@ -65,10 +80,52 @@ public class Share extends AppCompatActivity  {
         sharedBitmap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                myUID = user.getUid();
-                    addDataFirebase(myUID,imageUri);
             }
         });
+        swipe = new Swipe(350,400);
+        swipe.setListener(new SwipeListener() {
+            @Override public void onSwipingLeft(final MotionEvent event) {
+            }
+            @Override public boolean onSwipedLeft(final MotionEvent event) {
+                return false;
+            }
+
+            @Override public void onSwipingRight(final MotionEvent event) {
+            }
+
+            @Override public boolean onSwipedRight(final MotionEvent event) {
+                return false;
+            }
+
+            @Override public void onSwipingUp(final MotionEvent event) {
+            }
+
+            @Override public boolean onSwipedUp(final MotionEvent event) {
+                long[] pattern = {0, 25, 100, 35, 100};
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    VibrationEffect effect = VibrationEffect.createWaveform(pattern, -1);
+                    v3.vibrate(effect);
+                } else {
+                    //deprecated in API 26
+                    v3.vibrate(pattern, -1);
+                }
+                Toast.makeText(Share.this, "Transmitting Over Air", Toast.LENGTH_SHORT).show();
+                   myUID = user.getUid();
+                   addDataFirebase(myUID,imageUri);
+                return false;
+            }
+
+            @Override public void onSwipingDown(final MotionEvent event) {
+            }
+
+            @Override public boolean onSwipedDown(final MotionEvent event) {
+                return false;
+            }
+        });
+    }
+    @Override public boolean dispatchTouchEvent(MotionEvent event) {
+        swipe.dispatchTouchEvent(event);
+        return super.dispatchTouchEvent(event);
     }
     private Uri getImageUri(Context context, Bitmap inImage) {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
@@ -88,9 +145,25 @@ public class Share extends AppCompatActivity  {
                         DropMe dropMe = new DropMe(uri.toString());
                         String modelID = root.push().getKey();
                         root.child(modelID).setValue(dropMe);
-                        Toast.makeText(Share.this, "Transmitting Over Air", Toast.LENGTH_SHORT).show();
+                        final Handler handler = new Handler(Looper.getMainLooper());
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                shootRocket.cancelAnimation();
+                                shootRocket.setVisibility(View.INVISIBLE);
+                                sharedBitmap.setVisibility(View.VISIBLE);
+                                Toast.makeText(Share.this,"Success \uD83C\uDF89",Toast.LENGTH_SHORT).show();
+                            }
+                        }, 2000);
                     }
                 });
+            }
+        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
+                sharedBitmap.setVisibility(View.INVISIBLE);
+                shootRocket.setVisibility(View.VISIBLE);
+                shootRocket.playAnimation();
             }
         });
         root.addValueEventListener(new ValueEventListener() {
@@ -119,5 +192,14 @@ public class Share extends AppCompatActivity  {
     public void onPause() {
         parallaxImageView.unregisterSensorManager();
         super.onPause();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent toHome = new Intent(Share.this,Magic.class);
+        startActivity(toHome);
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        finish();
     }
 }
