@@ -18,9 +18,3 @@ h1 {
     font-family: "PSBold";
     font-size: 40px;
 }
-
-.image-container {
-    display: flex;
-    margin: 10px;
-    margin-left: 100px;
-}

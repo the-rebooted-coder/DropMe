@@ -15,7 +15,6 @@
         <tr>
             <td id="gallery_div"></td>
         </tr>
-
     </table>
 
 
@@ -25,8 +24,7 @@
         <h1>My Saved Images</h1>
     </div>
     <!-- Images -->
-    <div class="img-container">
-        <img src ="#" id ="img-id" class="image-card">
+    <div class="gallery_div">
     </div>
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
@@ -75,12 +73,11 @@ function getUserData(uid) {
 //reading the data from a particular file, (for test purpose)
 firebase.database().ref('demo').on('value',(snap)=>{
    console.log(snap.val());
-  });
+});
 
 </script>
 
 <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
-
 <script type="text/javascript" src="trial.js"></script>    
 
 </body>
