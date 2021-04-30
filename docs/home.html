@@ -10,6 +10,9 @@
 <body>
 
     <h1>My Saved Images</h1>
+    <button class="sign-out" onclick="signOut()">
+        Sign Out
+    </button>
     <table>
         <tbody>
             <tr id="gallery_div">
@@ -95,6 +98,7 @@ firebase.database().ref('users/').on('value',(snap)=>{
 </script>
 
 <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+<script src="./signout.js"></script>
 
 
 </body>

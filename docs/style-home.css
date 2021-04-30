@@ -53,3 +53,18 @@ img:hover {
 tr > img {
     margin: 15px;
 }
+
+.sign-out {
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin: 20px;
+    width: 80px;
+    height: 80px;
+    font-family: "PSBold";
+    border-radius: 50%;
+    color: #fff;
+    background: #000;
+    cursor: pointer;
+    border: 5px solid #fff;
+}
