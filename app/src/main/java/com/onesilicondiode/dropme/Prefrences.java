@@ -39,6 +39,7 @@ public class Prefrences extends AppCompatActivity {
     TextView email_full;
     ParallaxImageView userBack;
     Button signOut;
+    int counter = 0;
     private GoogleSignInClient mGoogleSignInClient;
 
     @Override
@@ -70,6 +71,17 @@ public class Prefrences extends AppCompatActivity {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         photo = findViewById(R.id.accPhoto);
         email = findViewById(R.id.accName);
+        email.setOnClickListener(v -> {
+            if(counter == 0){
+                Toast.makeText(this,"Now showing userID",Toast.LENGTH_SHORT).show();
+                email.setText(user.getUid());
+                counter++;
+            }
+            else {
+                email.setText(user.getDisplayName());
+                counter = 0;
+            }
+        });
         email_full = findViewById(R.id.accEmail);
         Uri photoUrl = user.getPhotoUrl(); Glide.with(this).load(photoUrl).into(photo);
         String personEmail = user.getDisplayName();
