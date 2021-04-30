@@ -48,9 +48,12 @@ public class Prefrences extends AppCompatActivity {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         photo = findViewById(R.id.accPhoto);
         email = findViewById(R.id.accName);
+        email_full = findViewById(R.id.accEmail);
         Uri photoUrl = user.getPhotoUrl(); Glide.with(this).load(photoUrl).into(photo);
         String personEmail = user.getDisplayName();
         email.setText(personEmail);
+        String personRealEmail = user.getEmail();
+        email_full.setText(personRealEmail);
         background = findViewById(R.id.background);
         if (savedInstanceState == null) {
             background.setVisibility(View.INVISIBLE);
