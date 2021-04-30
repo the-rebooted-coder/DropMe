@@ -1,5 +1,6 @@
 package com.onesilicondiode.dropme;
 
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -8,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
+import android.webkit.MimeTypeMap;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -76,7 +78,7 @@ public class Share extends AppCompatActivity  {
     }
     private void addDatatoFirebase(String myUID,Uri uri) {
         dropMe.setMyUID(myUID);
-        StorageReference fileRef = reference.child(System.currentTimeMillis()+".png");
+        StorageReference fileRef = reference.child(System.currentTimeMillis()+"."+getFileExtenstion(uri));
         fileRef.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -102,6 +104,11 @@ public class Share extends AppCompatActivity  {
                 Toast.makeText(Share.this, "Transmission Cancelled"+error, Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    private String getFileExtenstion(Uri mUri){
+        ContentResolver cr = getContentResolver();
+        MimeTypeMap mime = MimeTypeMap.getSingleton();
+        return mime.getExtensionFromMimeType(cr.getType(mUri));
     }
     @Override
     protected void onResume() {
