@@ -6,11 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DropMe</title>
     <link rel="stylesheet" href="style.css">
+    <script src="parallax.js"></script>
 </head>
 <body>
+
+
+    
     <div class="head">
         <h1>Welcome to DropMe!</h1>
     </div>  
+
+    <div class="container">
+		<ul id="scene">
+			<li class="layer" data-depth="1"><img src="planet1.png"></li>
+			<li class="layer" data-depth="-1"><img src="planet2.png"></li>
+			<li class="layer" data-depth="2"><img src="astronaut.png"></li>
+			<li class="layer" data-depth="0.5"><img src="rocket.png"></li>
+		</ul>
+	</div>
+
+    <script>
+		var scene = document.getElementById('scene');
+		var parallax = new Parallax(scene);
+	</script>
+
     <div class="sign-in">
         <button class="sign-in-btn" onclick=googleSignIn() aria-label="Continue With Google"></button>
     </div>  
