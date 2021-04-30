@@ -39,7 +39,6 @@
         android:layout_height="450dp"
         android:elevation="12dp"
         android:layout_marginTop="20dp"
-        android:backgroundTint="#04051C"
         android:layout_below="@+id/accPhoto"
         app:cardCornerRadius="25dp"
         android:layout_centerHorizontal="true"
