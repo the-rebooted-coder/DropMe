@@ -66,7 +66,7 @@ public class Share extends AppCompatActivity  {
             @Override
             public void onClick(View v) {
                 myUID = user.getUid();
-                    addDatatoFirebase(myUID,imageUri);
+                    addDataFirebase(myUID,imageUri);
             }
         });
     }
@@ -76,9 +76,9 @@ public class Share extends AppCompatActivity  {
         String path = MediaStore.Images.Media.insertImage(context.getContentResolver(), inImage, "TransmissionData", null);
         return Uri.parse(path);
     }
-    private void addDatatoFirebase(String myUID,Uri uri) {
+    private void addDataFirebase(String myUID, Uri uri) {
         dropMe.setMyUID(myUID);
-        StorageReference fileRef = reference.child(System.currentTimeMillis()+"."+getFileExtenstion(uri));
+        StorageReference fileRef = reference.child(System.currentTimeMillis()+"."+ getFileExtension(uri));
         fileRef.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -105,7 +105,7 @@ public class Share extends AppCompatActivity  {
             }
         });
     }
-    private String getFileExtenstion(Uri mUri){
+    private String getFileExtension(Uri mUri){
         ContentResolver cr = getContentResolver();
         MimeTypeMap mime = MimeTypeMap.getSingleton();
         return mime.getExtensionFromMimeType(cr.getType(mUri));
