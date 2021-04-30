@@ -28,6 +28,7 @@ img {
     width: 100%;
     border: 5px solid whitesmoke;
     border-radius: 20px;
+    cursor: pointer;
 }
 
 tbody {
