@@ -226,7 +226,7 @@ class Magic : AppCompatActivity() {
 
         val deniedListener = DialogOnDeniedPermissionListener.Builder.withContext(this)
                 .withTitle("Permission Required")
-                .withMessage("Dedo Shaanti Se")
+                .withMessage("Please Give Permission for Data Storage")
                 .withButtonText("Ok")
                 .build()
 

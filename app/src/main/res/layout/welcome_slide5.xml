@@ -18,13 +18,13 @@
             android:layout_height="280dp"
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
-            app:lottie_fileName="slide2.json"/>
+            app:lottie_fileName="slide3.json"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/productsans"
-            android:text="@string/capture_on_your_phone"
+            android:text="@string/just_before_we_begin"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="30sp"
@@ -37,7 +37,7 @@
             android:fontFamily="@font/productsans"
             android:paddingLeft="40dp"
             android:paddingRight="40dp"
-            android:text="@string/magically_transfer_them_on_your_desktop"
+            android:text="Drop me Requires Storage Permission to Store the Magical Images"
             android:textAlignment="center"
             android:textColor="@android:color/black"
             android:textSize="26sp" />
