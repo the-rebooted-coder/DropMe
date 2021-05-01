@@ -16,6 +16,7 @@ import android.provider.MediaStore;
 import android.view.MotionEvent;
 import android.view.View;
 import android.webkit.MimeTypeMap;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -41,6 +42,10 @@ import com.nvanbenschoten.motion.ParallaxImageView;
 
 import java.io.ByteArrayOutputStream;
 
+import dev.shreyaspatil.MaterialDialog.BottomSheetMaterialDialog;
+import dev.shreyaspatil.MaterialDialog.MaterialDialog;
+import dev.shreyaspatil.MaterialDialog.interfaces.DialogInterface;
+
 public class Share extends AppCompatActivity  {
     RoundedImageView sharedBitmap;
     ParallaxImageView parallaxImageView;
@@ -53,6 +58,7 @@ public class Share extends AppCompatActivity  {
     Vibrator v3;
     private Uri imageUri;
     LottieAnimationView shootRocket;
+    TextView howtoUse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +68,14 @@ public class Share extends AppCompatActivity  {
         parallaxImageView = findViewById(R.id.motion_back);
         shootRocket = findViewById(R.id.shootRocket);
         dropMe = new DropMe();
+        howtoUse = findViewById(R.id.howToUse);
+        howtoUse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                vibrateDevice();
+                createNotifier();
+            }
+        });
         sharedBitmap = findViewById(R.id.sharedBitmap);
         byte[] byteArray = getIntent().getByteArrayExtra("image");
         Bitmap bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
@@ -118,6 +132,19 @@ public class Share extends AppCompatActivity  {
             }
         });
     }
+
+    private void createNotifier() {
+        BottomSheetMaterialDialog mDialog = new BottomSheetMaterialDialog.Builder(this)
+                .setTitle("Open the DropMe Web Client on Your Desktop")
+                .setMessage("To get all your transmitted images, just open https://bit.ly/dropme-web on your Desktop/Laptop")
+                .setAnimation("notif.json")
+                .setCancelable(false)
+                .setPositiveButton("Gotcha!", null)
+                .build();
+        // Show Dialog
+        mDialog.show();
+    }
+
     @Override public boolean dispatchTouchEvent(MotionEvent event) {
         swipe.dispatchTouchEvent(event);
         return super.dispatchTouchEvent(event);
@@ -204,5 +231,15 @@ public class Share extends AppCompatActivity  {
         startActivity(toHome);
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         finish();
+    }
+    private void vibrateDevice() {
+        Vibrator v3 = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            long[] pattern = {0,25,100,35,100,45,100};
+            v3.vibrate(VibrationEffect.createWaveform(pattern,-1));
+        } else {
+            long[] pattern = {0,25,100,35,100,45,100};
+            v3.vibrate(pattern,-1);
+        }
     }
 }

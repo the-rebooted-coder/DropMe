@@ -20,7 +20,7 @@
     <string name="magically_transfer_them_on_your_desktop">Magically transfer them on your desktop</string>
     <string name="just_before_we_begin">Just Before we Begin…</string>
     <string name="gotcha">GOT IT</string>
-    <string name="how_to_grab">Open <i><b>https://bit.ly/dropme-web</b></i> on your desktop to grab your images</string>
+    <string name="how_to_grab">Open <i><b>https://bit.ly/dropme-web</b></i> on your desktop to grab your images.\n\n<i>Tap for More Info</i></string>
     <string-array name="greetings">
         <item>Welcome to DropMe!</item>
         <item>Hello</item>
