@@ -24,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/productsans"
-            android:text="Just Before we Begin..."
+            android:text="@string/just_before_we_begin"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="30sp"
@@ -37,7 +37,7 @@
             android:fontFamily="@font/productsans"
             android:paddingLeft="40dp"
             android:paddingRight="40dp"
-            android:text="Grant DropMe the Media Permission so that you can choose photos within the App!"
+            android:text="Drop me Requires Storage Permission to Store the Magical Images"
             android:textAlignment="center"
             android:textColor="@android:color/black"
             android:textSize="26sp" />
