@@ -40,4 +40,15 @@
         app:lottie_autoPlay="false"
         app:lottie_loop="false"
         android:visibility="invisible"/>
+
+    <TextView
+        android:id="@+id/howToUse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/how_to_grab"
+        android:fontFamily="@font/productsans"
+        android:layout_marginBottom="10dp"
+        android:layout_alignParentBottom="true"
+        android:textAlignment="center"/>
+
 </RelativeLayout>
