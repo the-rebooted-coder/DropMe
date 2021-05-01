@@ -22,15 +22,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DropMe">
-<<<<<<< Updated upstream
-        <activity android:name=".AboutDropMe"></activity>
-=======
-        <activity android:name=".WelcomeActivity"></activity>
->>>>>>> Stashed changes
+        <activity android:name=".AboutDropMe"/>
+        <activity android:name=".WelcomeActivity"/>
         <activity
             android:name=".Prefrences"
             android:launchMode="singleTask"
-            android:theme="@style/AppTheme.Transparent"></activity>
+            android:theme="@style/AppTheme.Transparent">
+
+        </activity>
         <activity android:name=".LoginActivity" />
         <activity android:name=".Share" />
         <activity android:name=".NoInternet" />
