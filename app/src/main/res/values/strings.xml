@@ -13,6 +13,7 @@
     <string name="sign_out">Sign Out</string>
     <string name="devMail">connectwithspandan@gmail.com</string>
     <string name="devName">Spandan Saxena</string>
+    <string name="about_app">About DropMe</string>
     <string-array name="greetings">
         <item>Welcome to DropMe!</item>
         <item>Hello</item>
