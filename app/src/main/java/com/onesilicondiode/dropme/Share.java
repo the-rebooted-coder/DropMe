@@ -77,11 +77,6 @@ public class Share extends AppCompatActivity  {
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             finish();
         }
-        sharedBitmap.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            }
-        });
         swipe = new Swipe(350,400);
         swipe.setListener(new SwipeListener() {
             @Override public void onSwipingLeft(final MotionEvent event) {
@@ -145,6 +140,7 @@ public class Share extends AppCompatActivity  {
                         DropMe dropMe = new DropMe(uri.toString());
                         String modelID = root.push().getKey();
                         root.child(modelID).setValue(dropMe);
+                        shootRocket.playAnimation();
                         final Handler handler = new Handler(Looper.getMainLooper());
                         handler.postDelayed(new Runnable() {
                             @Override
@@ -164,6 +160,13 @@ public class Share extends AppCompatActivity  {
                 sharedBitmap.setVisibility(View.INVISIBLE);
                 shootRocket.setVisibility(View.VISIBLE);
                 shootRocket.playAnimation();
+                final Handler handler2 = new Handler(Looper.getMainLooper());
+                handler2.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        shootRocket.cancelAnimation();
+                    }
+                }, 2500);
             }
         });
         root.addValueEventListener(new ValueEventListener() {
