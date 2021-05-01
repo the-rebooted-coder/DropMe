@@ -1,9 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:animateLayoutChanges="true"
     android:layout_height="match_parent"
     tools:context=".AboutDropMe">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <com.nvanbenschoten.motion.ParallaxImageView
+        android:id="@+id/about"
+        style="@style/aboutBack"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        app:motionIntensity="6.5"
+        android:layout_centerHorizontal="true"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/aboutTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:transitionName="imageTransition"
+        android:textColor="@color/black"
+        android:fontFamily="@font/productsansbold"
+        android:text="@string/about_app"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        android:textSize="32sp"/>
+
+</RelativeLayout>

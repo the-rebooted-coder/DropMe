@@ -1,13 +1,16 @@
 package com.onesilicondiode.dropme;
 
 import android.animation.Animator;
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
+import android.util.Pair;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewAnimationUtils;
@@ -38,7 +41,7 @@ public class Prefrences extends AppCompatActivity {
     TextView email;
     TextView email_full;
     ParallaxImageView userBack;
-    Button signOut;
+    Button signOut,about;
     int counter = 0;
     private GoogleSignInClient mGoogleSignInClient;
 
@@ -47,6 +50,22 @@ public class Prefrences extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_prefrences);
         userBack = findViewById(R.id.userMotion);
+        about = findViewById(R.id.aboutDropMe);
+        about.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                vibrateDevice();
+                Intent i = new Intent(Prefrences.this, AboutDropMe.class);
+                Pair[] pairs = new Pair[1];
+                pairs[0] = new Pair<View, String> (about,"imageTransition");
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(Prefrences.this,pairs);
+                startActivity(i,options.toBundle());
+                int splash_screen_time_out = 1000;
+                new Handler().postDelayed(() -> {
+                    finish();
+                }, splash_screen_time_out);
+            }
+        });
         signOut = findViewById(R.id.signOut);
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
