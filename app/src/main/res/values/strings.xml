@@ -17,6 +17,8 @@
     <string name="next">NEXT</string>
     <string name="skip">SKIP</string>
     <string name="start" />
+    <string name="capture_on_your_phone">Capture on your phone</string>
+    <string name="magically_transfer_them_on_your_desktop">Magically transfer them on your desktop</string>
     <string-array name="greetings">
         <item>Welcome to DropMe!</item>
         <item>Hello</item>

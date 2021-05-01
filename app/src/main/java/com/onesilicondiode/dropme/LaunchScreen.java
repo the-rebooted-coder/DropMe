@@ -24,7 +24,7 @@ public class LaunchScreen extends AppCompatActivity {
                 startActivity(new Intent(LaunchScreen.this, Magic.class));
             }
             else {
-                startActivity(new Intent(LaunchScreen.this, LoginActivity.class));
+                startActivity(new Intent(LaunchScreen.this, WelcomeActivity.class));
             }
         }
         else {
