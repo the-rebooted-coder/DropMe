@@ -14,6 +14,9 @@
     <string name="devMail">connectwithspandan@gmail.com</string>
     <string name="devName">Spandan Saxena</string>
     <string name="about_app">About DropMe</string>
+    <string name="next">NEXT</string>
+    <string name="skip">SKIP</string>
+    <string name="start" />
     <string-array name="greetings">
         <item>Welcome to DropMe!</item>
         <item>Hello</item>

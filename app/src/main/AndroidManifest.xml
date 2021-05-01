@@ -22,7 +22,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DropMe">
+<<<<<<< Updated upstream
         <activity android:name=".AboutDropMe"></activity>
+=======
+        <activity android:name=".WelcomeActivity"></activity>
+>>>>>>> Stashed changes
         <activity
             android:name=".Prefrences"
             android:launchMode="singleTask"
