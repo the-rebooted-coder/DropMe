@@ -45,6 +45,8 @@
         android:id="@+id/howToUse"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
         android:text="@string/how_to_grab"
         android:fontFamily="@font/productsans"
         android:layout_marginBottom="10dp"
