@@ -1,6 +1,7 @@
 {
     "name": "DropMe",
     "short_name": "DropMe",
+    "scope" : "./"
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
