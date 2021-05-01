@@ -21,6 +21,8 @@
     <string name="just_before_we_begin">Just Before we Begin…</string>
     <string name="gotcha">GOT IT</string>
     <string name="how_to_grab">Open <i><b>https://bit.ly/dropme-web</b></i> on your desktop to grab your images.\n\n<i>Tap for More Info</i></string>
+    <string name="get_images_tip">To get all your transmitted images, just open <b>https://bit.ly/dropme-web</b> on your Desktop/Laptop</string>
+    <string name="get_images_tip_title">Open the DropMe Web Client on Your Desktop</string>
     <string-array name="greetings">
         <item>Welcome to DropMe!</item>
         <item>Hello</item>

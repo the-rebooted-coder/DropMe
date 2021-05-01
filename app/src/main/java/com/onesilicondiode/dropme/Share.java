@@ -56,7 +56,7 @@ public class Share extends AppCompatActivity  {
     private StorageReference reference = FirebaseStorage.getInstance().getReference();
     DropMe dropMe;
     Vibrator v3;
-    private Uri imageUri;
+    Uri imageUri;
     LottieAnimationView shootRocket;
     TextView howtoUse;
 
@@ -69,19 +69,18 @@ public class Share extends AppCompatActivity  {
         shootRocket = findViewById(R.id.shootRocket);
         dropMe = new DropMe();
         howtoUse = findViewById(R.id.howToUse);
-        howtoUse.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                vibrateDevice();
-                createNotifier();
-            }
+        howtoUse.setOnClickListener(v -> {
+            vibrateDevice();
+            createNotifier();
         });
         sharedBitmap = findViewById(R.id.sharedBitmap);
         byte[] byteArray = getIntent().getByteArrayExtra("image");
         Bitmap bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
         if (bmp!=null){
-            sharedBitmap.setImageBitmap(bmp);
-            imageUri = getImageUri(this,bmp);
+            // sharedBitmap.setImageBitmap(bmp);
+            // imageUri = getImageUri(this,bmp);
+            imageUri = Uri.parse(MediaStore.Images.Media.insertImage(getContentResolver(), bmp, null,null));
+            sharedBitmap.setImageURI(imageUri);
         }
         else {
             //Pure Exception Handling
@@ -135,25 +134,17 @@ public class Share extends AppCompatActivity  {
 
     private void createNotifier() {
         BottomSheetMaterialDialog mDialog = new BottomSheetMaterialDialog.Builder(this)
-                .setTitle("Open the DropMe Web Client on Your Desktop")
-                .setMessage("To get all your transmitted images, just open https://bit.ly/dropme-web on your Desktop/Laptop")
-                .setAnimation("notif.json")
-                .setCancelable(false)
-                .setPositiveButton("Gotcha!", null)
+                .setTitle(getString(R.string.get_images_tip_title))
+                .setMessage(getString(R.string.get_images_tip))
+                .setAnimation("linked.json")
+                .setCancelable(true)
                 .build();
-        // Show Dialog
         mDialog.show();
     }
 
     @Override public boolean dispatchTouchEvent(MotionEvent event) {
         swipe.dispatchTouchEvent(event);
         return super.dispatchTouchEvent(event);
-    }
-    private Uri getImageUri(Context context, Bitmap inImage) {
-        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-        inImage.compress(Bitmap.CompressFormat.PNG, 100, bytes);
-        String path = MediaStore.Images.Media.insertImage(context.getContentResolver(), inImage, "TransmissionData", null);
-        return Uri.parse(path);
     }
     private void addDataFirebase(String myUID, Uri uri) {
         dropMe.setMyUID(myUID);

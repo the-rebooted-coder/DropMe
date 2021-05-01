@@ -106,7 +106,6 @@ class Magic : AppCompatActivity() {
             info("Image is ${inputImage!!.path}")
             // Check permission
             checkPermission {
-
                 info("Permission granted")
                 bProcess.visibility = View.GONE
                 bProcess.animate().alpha(0.0f)
@@ -135,13 +134,11 @@ class Magic : AppCompatActivity() {
                                     magic.setText(getString(R.string.magic_is_happening))
                                 }
                             }
-
                             override fun onUploadProgress(progress: Float) {
                                 runOnUiThread {
                                     magic.setText(getString(R.string.magic_about_to_happen))
                                 }
                             }
-
                             override fun onError(errors: List<ErrorResponse.Error>) {
                                 runOnUiThread {
                                     magic.visibility = View.INVISIBLE
@@ -164,7 +161,7 @@ class Magic : AppCompatActivity() {
                                         outputImage = it
                                     }
                                     val stream = ByteArrayOutputStream()
-                                    bitmap.compress(Bitmap.CompressFormat.PNG, 95, stream)
+                                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
                                     val byteArray: ByteArray = stream.toByteArray()
                                     intent = Intent(applicationContext, Share::class.java)
                                     intent.putExtra("image",byteArray)
@@ -183,13 +180,11 @@ class Magic : AppCompatActivity() {
         }
     }
     private fun compressImage(image: File, onLoaded: (bitmap: Bitmap) -> Unit) {
-
         Glide.with(this)
                 .asBitmap()
                 .load(image)
                 .into(object : CustomTarget<Bitmap>() {
                     override fun onLoadCleared(placeholder: Drawable?) {
-
                     }
                     override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
                         onLoaded(resource)
@@ -197,19 +192,16 @@ class Magic : AppCompatActivity() {
                 })
     }
     private fun saveImage(fileName: String, bitmap: Bitmap, onSaved: (file: File) -> Unit) {
-
         // Create project dir
         if (!projectDir.exists()) {
             projectDir.mkdir()
         }
-
         // Create inputImage file
         val imageFile = File("$projectDir/$fileName.jpg")
         imageFile.outputStream().use { out ->
             bitmap.compress(Bitmap.CompressFormat.JPEG, 80, out)
             out.flush()
         }
-
         onSaved(imageFile)
     }
     private fun showErrorAlert(message: String) {
