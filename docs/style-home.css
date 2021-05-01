@@ -11,6 +11,24 @@ body {
     background: url(./Assets/background.png);
 }
 
+/* Scrollbar CSS */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #464646;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: grey;
+    background-position: right center;
+}  
+
 h1 {
     color: #fff;
     display: flex;
@@ -80,8 +98,8 @@ tr > img {
     height: 60px;
     line-height: 60px;
     border-radius: 50%;
-    background: -webkit-linear-gradient(left, #102baf 0%, #1664ff 50%, #102baf 100%);
-    background: -o-linear-gradient(left, #102baf 0%, #1664ff 50%, #102baf 100%);
+    background: -webkit-linear-gradient(left, #000 0%, #464646 50%, #000 100%);
+    background: -o-linear-gradient(left, #000 0%, #464646 50%, #000 100%);
     background: linear-gradient(to right, #000 0%, #464646 50%, #000 100%);
     background-size: 200% auto;
     text-align: center;
