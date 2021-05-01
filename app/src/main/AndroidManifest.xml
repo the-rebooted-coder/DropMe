@@ -22,10 +22,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DropMe">
-        <activity android:name=".Prefrences"
-            android:theme="@style/AppTheme.Transparent"
-            android:launchMode="singleTask">
-        </activity>
+        <activity android:name=".AboutDropMe"></activity>
+        <activity
+            android:name=".Prefrences"
+            android:launchMode="singleTask"
+            android:theme="@style/AppTheme.Transparent"></activity>
         <activity android:name=".LoginActivity" />
         <activity android:name=".Share" />
         <activity android:name=".NoInternet" />
