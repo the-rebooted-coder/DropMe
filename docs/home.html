@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DropMe</title>
     <link rel="stylesheet" href="./style-home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 
@@ -19,6 +20,7 @@
             </tr>
         </tbody>
     </table>
+    <a href="#" class="back-to-top"><i class="fa fa-arrow-up"></i></a>
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-app.js"></script>
@@ -99,7 +101,7 @@ firebase.database().ref('users/').on('value',(snap)=>{
 
 <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
 <script src="./signout.js"></script>
-
+<script src="./back-to-top.js"></script>
 
 </body>
 </html>
