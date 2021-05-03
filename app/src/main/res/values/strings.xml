@@ -1,28 +1,28 @@
 <resources>
     <string name="app_name">DropMe</string>
-    <string name="click">Click</string>
-    <string name="process">Process</string>
-    <string name="choose_image">Choose Image</string>
-    <string name="magic_is_happening">Magic is Happening in the Cloud…☁️</string>
-    <string name="magic_about_to_happen">Throwing image above the clouds…☁️</string>
-    <string name="retry">Retry</string>
-    <string name="biggest_question">Internet?\nYou There?</string>
-    <string name="tap_to_begin">Tap to Begin</string>
-    <string name="sign_in">Sign In</string>
-    <string name="open_settings">open settings</string>
-    <string name="sign_out">Sign Out</string>
-    <string name="devMail">connectwithspandan@gmail.com</string>
-    <string name="devName">Spandan Saxena</string>
-    <string name="about_app">About DropMe</string>
-    <string name="next">NEXT</string>
-    <string name="skip">SKIP</string>
-    <string name="capture_on_your_phone">Capture on your phone</string>
-    <string name="magically_transfer_them_on_your_desktop">Magically transfer them on your desktop</string>
-    <string name="just_before_we_begin">Just Before we Begin…</string>
-    <string name="gotcha">GOT IT</string>
-    <string name="how_to_grab">Open <i><b>https://bit.ly/dropme-web</b></i> on your desktop to grab your images.\n\n<i>Tap for More Info</i></string>
-    <string name="get_images_tip">To get all your transmitted images, just open <b>https://bit.ly/dropme-web</b> on your Desktop/Laptop</string>
-    <string name="get_images_tip_title">Open the DropMe Web Client on Your Desktop</string>
+    <string name="click" translatable="false">Click</string>
+    <string name="process" translatable="false">Process</string>
+    <string name="choose_image" translatable="false">Choose Image</string>
+    <string name="magic_is_happening" translatable="false">Magic is Happening in the Cloud…☁️</string>
+    <string name="magic_about_to_happen" translatable="false">Throwing image above the clouds…☁️</string>
+    <string name="retry" translatable="false">Retry</string>
+    <string name="biggest_question" translatable="false">Internet?\nYou There?</string>
+    <string name="tap_to_begin" translatable="false">Tap to Begin</string>
+    <string name="sign_in" translatable="false">Sign In</string>
+    <string name="open_settings" translatable="false">open settings</string>
+    <string name="sign_out" translatable="false">Sign Out</string>
+    <string name="devMail" translatable="false">connectwithspandan@gmail.com</string>
+    <string name="devName" translatable="false">Spandan Saxena</string>
+    <string name="about_app" translatable="false">About DropMe</string>
+    <string name="next" translatable="false">NEXT</string>
+    <string name="skip" translatable="false">SKIP</string>
+    <string name="capture_on_your_phone" translatable="false">Capture on your phone</string>
+    <string name="magically_transfer_them_on_your_desktop" translatable="false">Magically transfer them on your desktop</string>
+    <string name="just_before_we_begin" translatable="false">Just Before we Begin…</string>
+    <string name="gotcha" translatable="false">GOT IT</string>
+    <string name="how_to_grab" translatable="false">Open <i><b>https://bit.ly/dropme-web</b></i> on your desktop to grab your images.\n\n<i>Tap for More Info</i></string>
+    <string name="get_images_tip" translatable="false">To get all your transmitted images, just open <b>https://bit.ly/dropme-web</b> on your Desktop/Laptop</string>
+    <string name="get_images_tip_title" translatable="false">Open the DropMe Web Client on Your Desktop</string>
     <string-array name="greetings">
         <item>Welcome to DropMe!</item>
         <item>Hello</item>
