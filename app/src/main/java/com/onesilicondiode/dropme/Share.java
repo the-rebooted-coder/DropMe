@@ -15,6 +15,7 @@ import android.os.Vibrator;
 import android.provider.MediaStore;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.webkit.MimeTypeMap;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -63,6 +64,8 @@ public class Share extends AppCompatActivity  {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Hide status bar
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_share);
         v3 = (Vibrator) getSystemService(Share.VIBRATOR_SERVICE);
         parallaxImageView = findViewById(R.id.motion_back);
@@ -125,6 +128,25 @@ public class Share extends AppCompatActivity  {
             }
 
             @Override public boolean onSwipedDown(final MotionEvent event) {
+                vibrateDevice();
+                BottomSheetMaterialDialog mBottomSheetDialog = new BottomSheetMaterialDialog.Builder(Share.this)
+                        .setTitle("Delete Transmitted Images?")
+                        .setMessage("Tapping 'Delete' will remove all the images from DropMe Web.")
+                        .setCancelable(false)
+                        .setPositiveButton("Delete", R.drawable.ic_delete, (dialogInterface, which) -> {
+                            vibrateDeviceAfterDelete();
+                            root.removeValue();
+                            Toast.makeText(getApplicationContext(), "Deleted!", Toast.LENGTH_SHORT).show();
+                            dialogInterface.dismiss();
+                        })
+                        .setNegativeButton("Cancel", R.drawable.ic_close, (dialogInterface, which) -> {
+                            Toast.makeText(getApplicationContext(), "Cancelled!", Toast.LENGTH_SHORT).show();
+                            dialogInterface.dismiss();
+                        })
+                        .build();
+
+                // Show Dialog
+                mBottomSheetDialog.show();
                 return false;
             }
         });
@@ -161,6 +183,7 @@ public class Share extends AppCompatActivity  {
                         handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
+                                howtoUse.setVisibility(View.VISIBLE);
                                 shootRocket.cancelAnimation();
                                 shootRocket.setVisibility(View.INVISIBLE);
                                 sharedBitmap.setVisibility(View.VISIBLE);
@@ -174,6 +197,7 @@ public class Share extends AppCompatActivity  {
             @Override
             public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
                 sharedBitmap.setVisibility(View.INVISIBLE);
+                howtoUse.setVisibility(View.INVISIBLE);
                 shootRocket.setVisibility(View.VISIBLE);
                 shootRocket.playAnimation();
                 final Handler handler2 = new Handler(Looper.getMainLooper());
@@ -223,11 +247,19 @@ public class Share extends AppCompatActivity  {
     }
     private void vibrateDevice() {
         Vibrator v3 = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        long[] pattern = {0,25,100,35,100,45,100};
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            long[] pattern = {0,25,100,35,100,45,100};
             v3.vibrate(VibrationEffect.createWaveform(pattern,-1));
         } else {
-            long[] pattern = {0,25,100,35,100,45,100};
+            v3.vibrate(pattern,-1);
+        }
+    }
+    private void vibrateDeviceAfterDelete() {
+        Vibrator v3 = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        long[] pattern = {0,25,100,35,100,45,100,55,100};
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            v3.vibrate(VibrationEffect.createWaveform(pattern,-1));
+        } else {
             v3.vibrate(pattern,-1);
         }
     }
