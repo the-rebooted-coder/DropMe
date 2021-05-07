@@ -1,0 +1,118 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: "PSBold";
+    src: url(./Assets/PSBold.ttf);
+}
+
+body {
+    background: url(./Assets/background_inner.png);
+}
+
+/* Scrollbar CSS */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #464646;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: grey;
+    background-position: right center;
+}  
+
+h1 {
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    font-family: "PSBold";
+    font-size: 40px;
+}
+
+table {
+    display: flex;
+    justify-content:center;
+}
+
+img {
+    width: 100%;
+    border: 5px solid whitesmoke;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+tbody {
+    margin: 20px;
+}
+
+tr {
+    margin: 200px;
+}
+
+img:hover {
+    animation: pulse 1s;
+    animation-timing-function: linear;  
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1);}
+    100% { transform: scale(1); }
+}
+
+tr > img {
+    margin: 15px;
+}
+
+.sign-out {
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin: 20px;
+    width: 80px;
+    height: 80px;
+    font-family: "PSBold";
+    border-radius: 50%;
+    color: #fff;
+    background: #000;
+    cursor: pointer;
+    border: 5px solid #fff;
+}
+
+/*===== BACK TO TOP =====*/
+.back-to-top {
+    font-size: 20px;
+    color: #fff;
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 50%;
+    background: -webkit-linear-gradient(left, #000 0%, #464646 50%, #000 100%);
+    background: -o-linear-gradient(left, #000 0%, #464646 50%, #000 100%);
+    background: linear-gradient(to right, #000 0%, #464646 50%, #000 100%);
+    background-size: 200% auto;
+    text-align: center;
+    z-index: 99;
+    -webkit-transition: all 0.3s ease-out 0s;
+    -moz-transition: all 0.3s ease-out 0s;
+    -ms-transition: all 0.3s ease-out 0s;
+    -o-transition: all 0.3s ease-out 0s;
+    transition: all 0.3s ease-out 0s;
+    display: none; 
+}
+
+.back-to-top:hover {
+    color: #fff;
+    background-position: right center; 
+}

@@ -1,17 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="shortcut icon" href="./Assets/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="./Assets/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#000000">
+    <meta name="apple-mobile-web-app-title" content="DropMe">
+    <meta name="application-name" content="DropMe">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="theme-color" content="#ffffff">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DropMe</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./style-home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-    <h1>Welcome to DropMe!</h1>
-    
+
+    <h1>My Saved Images</h1>
+    <button class="sign-out" onclick="signOut()">
+        Sign Out
+    </button>
+    <table>
+        <tbody>
+            <tr id="gallery_div">
+            </tr>
+        </tbody>
+    </table>
+    <a href="#" class="back-to-top"><i class="fa fa-arrow-up"></i></a>
+
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-database.js"></script>
 
     <!-- TODO: Add SDKs for Firebase products that you want to use
         https://firebase.google.com/docs/web/setup#available-libraries -->
@@ -33,7 +57,62 @@
     
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
-    firebase.analytics();        
-    </script>
+    firebase.analytics();      
+    
+
+    
+
+//checking for user
+const promise = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        const uid = firebase.auth().currentUser;
+        var userId = uid.uid;
+        console.log(userId);
+        resolve(userId);
+        console.log(uid.email);
+    }, 2000);
+})
+
+promise.then(userId => {
+    console.log("UID is here!");
+    console.log(userId + "Hurray!");
+
+    var rootref = firebase.database().ref().child(userId);
+    rootref.on("child_added", snap =>{
+    console.log("success"+userId);
+    var image = snap.child("imageUrl").val();
+            
+    $("#gallery_div").append("<img src=" + image + "></img><br>");
+    });
+})
+
+//getting user data
+function getUserData(userId) {
+    firebase.database().ref('users/' + userId).once("value", snap => {
+    console.log(snap.val())
+    })
+}
+
+//reading the data from a particular file, (for test purpose)
+firebase.database().ref('users/').on('value',(snap)=>{
+   console.log(snap.val());
+});
+
+
+// var rootref = firebase.database().ref().child('users/');
+
+// rootref.on("child_added", snap =>{
+//     console.log("success"+userId);
+//     var image = snap.child("imageUrl").val();
+            
+//     $("#gallery_div").append("<img src=" + image + "></img>");
+
+// });
+</script>
+
+<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+<script src="./signout.js"></script>
+<script src="./back-to-top.js"></script>
+
 </body>
 </html>

@@ -1,16 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="shortcut icon" href="./Assets/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="./Assets/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#000000">
+    <meta name="apple-mobile-web-app-title" content="DropMe">
+    <meta name="application-name" content="DropMe">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="theme-color" content="#ffffff">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DropMe</title>
     <link rel="stylesheet" href="style.css">
+    <script src="parallax.js"></script>
 </head>
 <body>
     <div class="head">
         <h1>Welcome to DropMe!</h1>
     </div>  
+
+    <div class="container">
+		<ul id="scene">
+			<li class="layer" data-depth="0.5"><img src="./Assets/parallax_dots.png"></li>
+        
+		</ul>
+	</div>
+    <script>
+		var scene = document.getElementById('scene');
+		var parallax = new Parallax(scene);
+	</script>
+
     <div class="sign-in">
         <button class="sign-in-btn" onclick=googleSignIn() aria-label="Continue With Google"></button>
     </div>  
@@ -52,7 +76,7 @@
         var user = firebase.auth().currentUser;
         firebase.auth().onAuthStateChanged(function(user) {
             if (user) {
-                window.location = 'home.html';
+                window.location = 'home';
             }            
             else {
                 console.log('No Users Detected.!')
