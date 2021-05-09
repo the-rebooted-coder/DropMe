@@ -1,2 +1,2 @@
 # DropMe
-### Something Magical Is Here. 🪄
+### Readme is still Genrating, Magic Still Happening!
