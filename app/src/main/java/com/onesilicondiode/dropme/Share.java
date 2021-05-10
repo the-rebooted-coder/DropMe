@@ -81,7 +81,7 @@ public class Share extends AppCompatActivity  {
         Bitmap bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
         if (bmp!=null){
             imageUri = Uri.parse(MediaStore.Images.Media.insertImage(getContentResolver(), bmp, null,null));
-            sharedBitmap.setImageURI(imageUri);
+            sharedBitmap.setImageBitmap(bmp);
         }
         else {
             //Pure Exception Handling
