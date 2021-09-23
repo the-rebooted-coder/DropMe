@@ -82,6 +82,7 @@ public class NoInternet extends AppCompatActivity {
             v3.vibrate(VibrationEffect.createOneShot(28, VibrationEffect.DEFAULT_AMPLITUDE));
         } else {
             //deprecated in API 26
+	//Still using for older versions
             v3.vibrate(25);
         }
     }
