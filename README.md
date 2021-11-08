@@ -1,5 +1,4 @@
 # DropMe.
-Spandan Saxena
 DropMe, a powerful web and Android tool that helps remove background from the image and share instantly to friends or social networks. With the drag and drop feature, your photos will upload as soon as they open up. 
 
 Now, with DropMe you can effortlessly share your moments with your friends and family, even if they cross platforms.
